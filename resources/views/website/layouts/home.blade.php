@@ -191,7 +191,7 @@
                     }'>
 
                         {{-- foreach loop start --}}
-                        <div class="product product-2" style="border: 2px solid blue;">
+                        <div class="product product-2">
                             <figure class="product-media">
                                 <span class="product-label label-circle label-top">Top</span>
                                 <a href="product.html">

@@ -53,7 +53,7 @@
 
     <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
 
-    <div class="mobile-menu-container mobile-menu-light" style="border: 2px solid red;">
+    <div class="mobile-menu-container mobile-menu-light">
         <div class="mobile-menu-wrapper">
             <span class="mobile-menu-close"><i class="icon-close"></i></span>
 
@@ -74,7 +74,7 @@
                         aria-controls="mobile-cats-tab" aria-selected="false">Categories</a>
                 </li>
             </ul>
-
+            {{-- mobile menu --}}
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel"
                     aria-labelledby="mobile-menu-link">
@@ -185,8 +185,8 @@
                                 </ul>
                             </li>
                         </ul>
-                    </nav><!-- End .mobile-nav -->
-                </div><!-- .End .tab-pane -->
+                    </nav> 
+                </div>
                 <div class="tab-pane fade" id="mobile-cats-tab" role="tabpanel" aria-labelledby="mobile-cats-link">
                     <nav class="mobile-cats-nav">
                         <ul class="mobile-cats-menu">
@@ -201,10 +201,10 @@
                             <li><a href="#">Kitchen Cabinets</a></li>
                             <li><a href="#">Coffee & Tables</a></li>
                             <li><a href="#">Outdoor Furniture </a></li>
-                        </ul><!-- End .mobile-cats-menu -->
-                    </nav><!-- End .mobile-cats-nav -->
-                </div><!-- .End .tab-pane -->
-            </div><!-- End .tab-content -->
+                        </ul> 
+                    </nav> 
+                </div>
+            </div> 
 
             <div class="social-icons">
                 <a href="#" class="social-icon" target="_blank" title="Facebook"><i
@@ -215,9 +215,9 @@
                         class="icon-instagram"></i></a>
                 <a href="#" class="social-icon" target="_blank" title="Youtube"><i
                         class="icon-youtube"></i></a>
-            </div><!-- End .social-icons -->
-        </div><!-- End .mobile-menu-wrapper -->
-    </div><!-- End .mobile-menu-container -->
+            </div> 
+        </div> 
+    </div> 
 
     <!-- Sign in / Register Modal -->
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -289,7 +289,7 @@
                                             </div><!-- End .col-6 -->
                                         </div><!-- End .row -->
                                     </div><!-- End .form-choice -->
-                                </div><!-- .End .tab-pane -->
+                                </div>
                                 <div class="tab-pane fade" id="register" role="tabpanel"
                                     aria-labelledby="register-tab">
                                     <form action="#">
@@ -333,17 +333,17 @@
                                                     <i class="icon-facebook-f"></i>
                                                     Login With Facebook
                                                 </a>
-                                            </div><!-- End .col-6 -->
-                                        </div><!-- End .row -->
-                                    </div><!-- End .form-choice -->
-                                </div><!-- .End .tab-pane -->
-                            </div><!-- End .tab-content -->
-                        </div><!-- End .form-tab -->
-                    </div><!-- End .form-box -->
-                </div><!-- End .modal-body -->
-            </div><!-- End .modal-content -->
-        </div><!-- End .modal-dialog -->
-    </div><!-- End .modal -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
 
     <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
