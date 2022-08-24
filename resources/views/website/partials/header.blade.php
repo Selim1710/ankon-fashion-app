@@ -51,7 +51,7 @@
                 </button>
                 {{-- logo --}}
                 <a href="#" class="logo">
-                    <img src="/website/assets/images/logo.png" alt="AN Logo" width="105"
+                    <img src="/website/images/logo.png" alt="AN Logo" width="105"
                         height="25">
                 </a>
             </div>

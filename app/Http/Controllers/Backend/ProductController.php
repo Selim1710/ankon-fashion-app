@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function manageProduct()
     {
         $products = Product::with('subCategory')->orderBy('id','desc')->get();
-        return view('admin.layouts.product.product_table', compact('products'));
+        return view('admin.layouts.product.table', compact('products'));
     }
     public function add()
     {
@@ -21,53 +21,30 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate([
-            'model' => 'required|unique:products',
-            'product_name' => 'required|unique:products',
-            'regular_price' => 'required',
-            'product_image' => 'required|mimes:jpg,png,jpeg|max:5048',
-            'product_offer' => 'required',
+            'name' => 'required|unique:products',
+            'offer' => 'required',
+            'price' => 'required',
+            'image' => 'required|mimes:jpg,png,jpeg|max:5048',
             'subCategory_id' => 'required',
-            'product_description' => 'required',
-            // specifications
-            'processor' => 'required',
-            'display' => 'required',
-            'memory' => 'required',
-            'storage' => 'required',
-            'graphics' => 'required',
-            'operating_system' => 'required',
-            'battery' => 'required',
-            'adapter' => 'required',
-            'audio' => 'required',
-            'keyboard' => 'required',
-            'optical_drive' => 'required',
-            'webcam' => 'required',
-            'wifi' => 'required',
-            'bluetooth' => 'required',
-            'USB' => 'required',
-            'HDMI' => 'required',
-            'VGA' => 'required',
-            'audio_jack_combo' => 'required',
-            'dimensions' => 'required',
-            'weight' => 'required',
-            'colors' => 'required',
-            'manufacturing_warranty' => 'required',
+            'description' => 'required',
 
         ]);
 
         $filename = '';
-        if ($request->hasfile('product_image')) {
-            $file = $request->file('product_image');
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
             $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('/uploads/products'), $filename);
         }
         Product::create([
             'model' => $request->model,
-            'product_name' => $request->product_name,
-            'regular_price' => $request->regular_price,
-            'product_image' => $filename,
-            'product_offer' => $request->product_offer,
-            'product_description' => $request->product_description,
+            'name' => $request->name,
+            'price' => $request->price,
+            'image' => $filename,
+            'offer' => $request->offer,
+            'description' => $request->description,
             // specifications
             'processor' => $request->processor,
             'display' => $request->display,
@@ -106,10 +83,10 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->update([
             'model' => $request->model,
-            'product_name' => $request->product_name,
-            'regular_price' => $request->regular_price,
-            'product_offer' => $request->product_offer,
-            'product_description' => $request->product_description,
+            'name' => $request->name,
+            'price' => $request->price,
+            'offer' => $request->offer,
+            'description' => $request->description,
             // specifications
             'processor' => $request->processor,
             'display' => $request->display,
@@ -139,7 +116,7 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = Product::find($id);
-        $image = str_replace('\\', '/', public_path('uploads/products/' . $product->product_image));
+        $image = str_replace('\\', '/', public_path('uploads/products/' . $product->image));
         if (is_file($image)) {
             unlink($image);
             $product->delete();
@@ -159,13 +136,13 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $filename = '';
-        if ($request->hasfile('product_image')) {
-            $file = $request->file('product_image');
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
             $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('/uploads/products'), $filename);
         }
         $product->update([
-            'product_image' => $filename,
+            'image' => $filename,
         ]);
         return redirect()->route('admin.manage.product')->with('message', 'Product Image Updated');
     }
