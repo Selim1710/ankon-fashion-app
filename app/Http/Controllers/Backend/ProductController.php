@@ -21,7 +21,7 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $request->validate([
             'name' => 'required|unique:products',
             'old_price' => 'required',
