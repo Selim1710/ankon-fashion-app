@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function manageProduct()
     {
         $products = Product::with('subCategory')->orderBy('id','desc')->get();
-        return view('admin.layouts.product.table', compact('products'));
+        return view('admin.layouts.product.product_table', compact('products'));
     }
     public function add()
     {
@@ -21,53 +21,34 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $request->validate([
             'name' => 'required|unique:products',
+            'old_price' => 'required',
+            'new_price' => 'required',
             'offer' => 'required',
-            'price' => 'required',
+            'size' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg|max:5048',
-            'subCategory_id' => 'required',
             'description' => 'required',
-
+            'subCategory_id' => 'required',
         ]);
 
-        $filename = '';
-        if ($request->hasfile('image')) {
+        // $filename = '';
+        if ($request->has('image')) {
+            dd('have');
+            // foreach()
             $file = $request->file('image');
             $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('/uploads/products'), $filename);
         }
+        dd('dont have');
         Product::create([
-            'model' => $request->model,
             'name' => $request->name,
             'price' => $request->price,
-            'image' => $filename,
+            // 'image' => $filename,
             'offer' => $request->offer,
             'description' => $request->description,
-            // specifications
-            'processor' => $request->processor,
-            'display' => $request->display,
-            'memory' => $request->memory,
-            'storage' => $request->storage,
-            'graphics' => $request->graphics,
-            'operating_system' => $request->operating_system,
-            'battery' => $request->battery,
-            'adapter' => $request->adapter,
-            'audio' => $request->audio,
-            'keyboard' => $request->keyboard,
-            'optical_drive' => $request->optical_drive,
-            'webcam' => $request->webcam,
-            'wifi' => $request->wifi,
-            'bluetooth' => $request->bluetooth,
-            'USB' => $request->USB,
-            'HDMI' => $request->HDMI,
-            'VGA' => $request->VGA,
-            'audio_jack_combo' => $request->audio_jack_combo,
-            'dimensions' => $request->dimensions,
-            'weight' => $request->weight,
-            'colors' => $request->colors,
-            'manufacturing_warranty' => $request->manufacturing_warranty,
+            
 
             'subCategory_id' => $request->subCategory_id,
         ]);
@@ -82,34 +63,11 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->update([
-            'model' => $request->model,
             'name' => $request->name,
             'price' => $request->price,
             'offer' => $request->offer,
             'description' => $request->description,
-            // specifications
-            'processor' => $request->processor,
-            'display' => $request->display,
-            'memory' => $request->memory,
-            'storage' => $request->storage,
-            'graphics' => $request->graphics,
-            'operating_system' => $request->operating_system,
-            'battery' => $request->battery,
-            'adapter' => $request->adapter,
-            'audio' => $request->audio,
-            'keyboard' => $request->keyboard,
-            'optical_drive' => $request->optical_drive,
-            'webcam' => $request->webcam,
-            'wifi' => $request->wifi,
-            'bluetooth' => $request->bluetooth,
-            'USB' => $request->USB,
-            'HDMI' => $request->HDMI,
-            'VGA' => $request->VGA,
-            'audio_jack_combo' => $request->audio_jack_combo,
-            'dimensions' => $request->dimensions,
-            'weight' => $request->weight,
-            'colors' => $request->colors,
-            'manufacturing_warranty' => $request->manufacturing_warranty,
+            
         ]);
         return redirect()->route('admin.manage.product')->with('message', 'Product updated');
     }
