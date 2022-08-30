@@ -19,8 +19,8 @@
         <div class="form-group">
             <label for="sc1">Sub-Category</label>
             <select class="form-control" id="sc1" name="subCategory_id">
-                @foreach ($products as $product)
-                <option value="{{ $product->id }}">{{ $product->sub_category_name }}</option>
+                @foreach ($subCategories as $subCategory)
+                <option value="{{ $subCategory->id }}">{{ $subCategory->sub_category_name }}</option>
                 @endforeach
             </select>
         </div>
@@ -28,7 +28,7 @@
             <label for="pn1">Name</label>
             <input type="text" name="name" class="form-control" id="pn1" required>
         </div>
-        <!-- calculation -->
+        <!-- price calculation -->
         <div class="form-group">
             <label for="Oldp">Old Price</label>
             <input type="number" name="old_price" class="form-control" id="Oldp" onchange="calculate();" required>
@@ -41,10 +41,10 @@
             <label for="new_price">New Price</label>
             <input type="number" name="new_price" value="" class="form-control" id="new_price" readonly>
         </div>
-        <!-- end calculation -->
+        <!-- image -->
         <div class="form-group">
             <label for="img1">Image</label>
-            <input type="file" multiple accept="image/*" name="image" class="form-control" id="img1" required>
+            <input type="file" multiple accept="image/*" name="images[]" class="form-control" id="img1" required>
         </div>
         <div class="form-group mt-3">
             <h4>Size</h4>

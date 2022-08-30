@@ -11,48 +11,48 @@ class ProductController extends Controller
 {
     public function manageProduct()
     {
-        $products = Product::with('subCategory')->orderBy('id','desc')->get();
+        $products = Product::with('subCategory')->orderBy('id', 'desc')->get();
         return view('admin.layouts.product.product_table', compact('products'));
     }
     public function add()
     {
-        $products = Subcategory::with('product')->get();
-        return view('admin.layouts.product.add_product', compact('products'));
+        $subCategories = Subcategory::with('product')->get();
+        return view('admin.layouts.product.add_product', compact('subCategories'));
     }
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'name' => 'required|unique:products',
             'old_price' => 'required',
             'new_price' => 'required',
             'offer' => 'required',
             'size' => 'required',
-            'image' => 'required|mimes:jpg,png,jpeg|max:5048',
+            'images' => 'required|max:5048',
             'description' => 'required',
             'subCategory_id' => 'required',
         ]);
+        $filename=array();
+        if ($request->has('images')) {
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $filename[] = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
+                $imageArrayToString = implode("," ,$filename);
+                $file->move(public_path('/uploads/products'), $imageArrayToString);
+            }
+            $sizeArrayToString = implode(",", $request['size']);
+            Product::create([
+                'name' => $request->name,
+                'old_price'  => $request->old_price,
+                'new_price' => $request->new_price,
+                'image' => $imageArrayToString,
+                'offer' => $request->offer,
+                'size' => $sizeArrayToString,
+                'description' => $request->description,
 
-        // $filename = '';
-        if ($request->has('image')) {
-            dd('have');
-            // foreach()
-            $file = $request->file('image');
-            $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('/uploads/products'), $filename);
+                'subCategory_id' => $request->subCategory_id,
+            ]);
+            return redirect()->route('admin.manage.product')->with('message', 'Product added successfully');
         }
-        dd('dont have');
-        Product::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            // 'image' => $filename,
-            'offer' => $request->offer,
-            'description' => $request->description,
-            
-
-            'subCategory_id' => $request->subCategory_id,
-        ]);
-        return redirect()->route('admin.manage.product')->with('message', 'Product added successfully');
     }
     public function edit($id)
     {
@@ -67,7 +67,6 @@ class ProductController extends Controller
             'price' => $request->price,
             'offer' => $request->offer,
             'description' => $request->description,
-            
         ]);
         return redirect()->route('admin.manage.product')->with('message', 'Product updated');
     }
