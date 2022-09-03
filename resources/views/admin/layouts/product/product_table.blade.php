@@ -16,35 +16,13 @@
         <thead class="table-primary">
             <tr class="text-center">
                 <th>SL</th>
-                <th>Model</th>
                 <th>Name</th>
-                <th>Regular Price</th>
                 <th>Image</th>
+                <th>Old Price</th>
                 <th>Offer</th>
-                <th>Product Description</th>
-                <!-- specification -->
-                <th>processor</th>
-                <th>display</th>
-                <th>memory</th>
-                <th>storage</th>
-                <th>graphics</th>
-                <th>operating_system</th>
-                <th>battery</th>
-                <th>adapter</th>
-                <th>audio</th>
-                <th>keyboard</th>
-                <th>optical_drive</th>
-                <th>webcam</th>
-                <th>wifi</th>
-                <th>bluetooth</th>
-                <th>USB</th>
-                <th>HDMI</th>
-                <th>VGA</th>
-                <th>audio_jack_combo</th>
-                <th>dimensions</th>
-                <th>weight</th>
-                <th>colors</th>
-                <th>manufacturing_warranty</th>
+                <th>New price</th>
+                <th>size</th>
+                <th>Description</th>
 
                 <th>subCategory_id</th>
                 <th>Action</th>
@@ -54,39 +32,15 @@
             @foreach($products as $key=>$product)
             <tr class="text-center">
                 <td>{{ $key+1 }}</td>
-                <td>{{ $product->model }}</td>
-                <td>{{ $product->product_name }}</td>
-                <td>{{ $product->regular_price }}</td>
-                <td> <img src="{{ asset('/uploads/products/'.$product->product_image ) }}" style="width:80px;height:80px;" alt=""> </td>
-                <td>{{ $product->product_offer }} %</td>
-                <td>{{ $product->product_description }}</td>
-                <!-- specification -->
-                <td>{{ $product->processor }}</td>
-                <td>{{ $product->display }}</td>
-                <td>{{ $product->memory }}</td>
-                <td>{{ $product->storage }}</td>
-                <td>{{ $product->graphics }}</td>
-                <td>{{ $product->operating_system }}</td>
-                <td>{{ $product->battery }}</td>
-                <td>{{ $product->adapter }}</td>
-                <td>{{ $product->audio }}</td>
-                <td>{{ $product->keyboard }}</td>
-                <td>{{ $product->optical_drive }}</td>
-                <td>{{ $product->webcam }}</td>
-                <td>{{ $product->wifi }}</td>
-                <td>{{ $product->bluetooth }}</td>
-                <td>{{ $product->USB }}</td>
-                <td>{{ $product->HDMI }}</td>
-                <td>{{ $product->VGA }}</td>
-                <td>{{ $product->audio_jack_combo }}</td>
-                <td>{{ $product->dimensions }}</td>
-                <td>{{ $product->weight }}</td>
-                <td>{{ $product->colors }}</td>
-                <td>{{ $product->manufacturing_warranty }}</td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->productImage->count() }}</td>
+                <td>{{ $product->old_price }}</td>
+                <td>{{ $product->offer }} %</td>
+                <td>{{ $product->new_price }} </td>
+                <td>{{ $product->size }} </td>
+                <td>{{ $product->description }}</td>
 
                 <td>{{ $product->subCategory_id }}</td>
-                <td>{{ $product->category_id }}</td>
-
                 <td>
                     <a href="{{ route('admin.view.product',$product->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
                     <a href="{{ route('admin.edit.product',$product->id) }}" class="btn btn-primary mt-1"><i class="fa fa-th-list"></i></a>

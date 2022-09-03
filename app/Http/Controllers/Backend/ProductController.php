@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductImage;
 
 class ProductController extends Controller
 {
     public function manageProduct()
     {
-        $products = Product::with('subCategory')->orderBy('id', 'desc')->get();
+        $products = Product::with('productImage')->orderBy('id', 'desc')->get();
+        // dd($products);
         return view('admin.layouts.product.product_table', compact('products'));
     }
     public function add()
@@ -31,26 +33,27 @@ class ProductController extends Controller
             'description' => 'required',
             'subCategory_id' => 'required',
         ]);
-        $filename=array();
-        if ($request->has('images')) {
-            $files = $request->file('images');
-            foreach ($files as $file) {
-                $filename[] = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
-                $imageArrayToString = implode("," ,$filename);
-                $file->move(public_path('/uploads/products'), $imageArrayToString);
-            }
-            $sizeArrayToString = implode(",", $request['size']);
-            Product::create([
+            $new_product = Product::create([
                 'name' => $request->name,
                 'old_price'  => $request->old_price,
                 'new_price' => $request->new_price,
-                'image' => $imageArrayToString,
                 'offer' => $request->offer,
-                'size' => $sizeArrayToString,
+                'size' => json_encode($request->size),
                 'description' => $request->description,
 
                 'subCategory_id' => $request->subCategory_id,
             ]);
+        $filename = array();
+        if ($request->has('images')) {
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $filename =date('Ymdmhs').'-image-' . rand(0,1000) . '.' . $file->getClientOriginalExtension();
+                 $file->move(public_path('/uploads/products'), $filename);
+                 ProductImage::create([
+                    'images' => json_encode($filename),
+                    'product_id'=>$new_product->id,
+                 ]);
+            }
             return redirect()->route('admin.manage.product')->with('message', 'Product added successfully');
         }
     }
@@ -86,8 +89,9 @@ class ProductController extends Controller
 
     public function view($id)
     {
-        $product = Product::find($id);
-        return view('admin.layouts.product.view_product', compact('product'));
+        $productImages = ProductImage::where('product_id',$id)->get();
+        // dd($productImages);
+        return view('admin.layouts.product.view_product', compact('productImages'));
     }
     public function change(Request $request, $id)
     {

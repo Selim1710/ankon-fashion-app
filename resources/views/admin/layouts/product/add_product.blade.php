@@ -54,23 +54,23 @@
             </label>
             &nbsp;
             <label>
-                <input type="checkbox" name="size[]" value="s-size">
+                <input type="checkbox" name="size[]" value="s">
                 S
             </label>
             <label>
-                <input type="checkbox" name="size[]" value="m-size">
+                <input type="checkbox" name="size[]" value="m">
                 M
             </label>
             <label>
-                <input type="checkbox" name="size[]" value="l-size">
+                <input type="checkbox" name="size[]" value="l">
                 L
             </label>
             <label>
-                <input type="checkbox" name="size[]" value="xl-size">
+                <input type="checkbox" name="size[]" value="xl">
                 XL
             </label>
             <label>
-                <input type="checkbox" name="size[]" value="xxl-size">
+                <input type="checkbox" name="size[]" value="xxl">
                 XXL
             </label>
         </div>

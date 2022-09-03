@@ -14,7 +14,6 @@ class CreateProductsTable extends Migration
             $table->integer('old_price');
             $table->integer('new_price');
             $table->string('size');
-            $table->string('image');
             $table->integer('offer');
             $table->string('description');
 
