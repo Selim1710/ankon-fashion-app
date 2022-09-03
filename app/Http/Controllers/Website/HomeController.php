@@ -16,8 +16,7 @@ class HomeController extends Controller
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         $offers = Offer::all();
-        // $offers = Offer::pluck('image');
-        // dd($offers);
+        // dd($products);
         return view('website.layouts.home', compact('categories', 'products', 'offers'));
     }
     public function search(Request $request)
