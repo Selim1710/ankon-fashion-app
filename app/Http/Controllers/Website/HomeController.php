@@ -14,9 +14,11 @@ class HomeController extends Controller
     public function home()
     {
         $categories = Category::with('subCategories')->get();
-        $products = Product::with('subCategory')->orderBy('id', 'DESC')->paginate(8);
-        $offers_image = Offer::pluck('image');
-        return view('website.layouts.home', compact('categories', 'products', 'offers_image'));
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        $offers = Offer::all();
+        // $offers = Offer::pluck('image');
+        // dd($offers);
+        return view('website.layouts.home', compact('categories', 'products', 'offers'));
     }
     public function search(Request $request)
     {
@@ -123,15 +125,15 @@ class HomeController extends Controller
                 ->orwhereIn('battery', $filter)
                 ->get();
 
-                $result = $products->count();
+            $result = $products->count();
 
-                $processor = Product::pluck('processor')->unique();
-                $display = Product::pluck('display')->unique();
-                $memory = Product::pluck('memory')->unique();
-                $graphics = Product::pluck('graphics')->unique();
-                $operating = Product::pluck('operating_system')->unique();
-                $battery = Product::pluck('battery')->unique();
-        }else{
+            $processor = Product::pluck('processor')->unique();
+            $display = Product::pluck('display')->unique();
+            $memory = Product::pluck('memory')->unique();
+            $graphics = Product::pluck('graphics')->unique();
+            $operating = Product::pluck('operating_system')->unique();
+            $battery = Product::pluck('battery')->unique();
+        } else {
             $products = Product::with('subCategory')->orderBy('id', 'DESC')->paginate(16);
             $processor = Product::pluck('processor')->unique();
             $display = Product::pluck('display')->unique();
@@ -140,7 +142,7 @@ class HomeController extends Controller
             $operating = Product::pluck('operating_system')->unique();
             $battery = Product::pluck('battery')->unique();
         }
-        return view('website.layouts.all_product_filter', compact('products','result', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
+        return view('website.layouts.all_product_filter', compact('products', 'result', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
     }
 
     ////////////////////////// The end ////////////////////////// 

@@ -24,8 +24,7 @@
     <meta name="msapplication-TileColor" content="#cc9966">
     <meta name="msapplication-config" content="/website/assets/images/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet"
-        href="{{ asset('/website/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/website/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css') }}">
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{ asset('/website/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/website/assets/css/plugins/owl-carousel/owl.carousel.css') }}">
@@ -59,25 +58,21 @@
 
             <form action="#" method="get" class="mobile-search">
                 <label for="mobile-search" class="sr-only">Search</label>
-                <input type="search" class="form-control" name="mobile-search" id="mobile-search"
-                    placeholder="Search in..." required>
+                <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
                 <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
             </form>
 
             <ul class="nav nav-pills-mobile nav-border-anim" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="mobile-menu-link" data-toggle="tab" href="#mobile-menu-tab"
-                        role="tab" aria-controls="mobile-menu-tab" aria-selected="true">Menu</a>
+                    <a class="nav-link active" id="mobile-menu-link" data-toggle="tab" href="#mobile-menu-tab" role="tab" aria-controls="mobile-menu-tab" aria-selected="true">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="mobile-cats-link" data-toggle="tab" href="#mobile-cats-tab" role="tab"
-                        aria-controls="mobile-cats-tab" aria-selected="false">Categories</a>
+                    <a class="nav-link" id="mobile-cats-link" data-toggle="tab" href="#mobile-cats-tab" role="tab" aria-controls="mobile-cats-tab" aria-selected="false">Categories</a>
                 </li>
             </ul>
             {{-- mobile menu --}}
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel"
-                    aria-labelledby="mobile-menu-link">
+                <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
                     <nav class="mobile-nav">
                         <ul class="mobile-menu">
                             <li class="active">
@@ -185,7 +180,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </nav> 
+                    </nav>
                 </div>
                 <div class="tab-pane fade" id="mobile-cats-tab" role="tabpanel" aria-labelledby="mobile-cats-link">
                     <nav class="mobile-cats-nav">
@@ -201,23 +196,19 @@
                             <li><a href="#">Kitchen Cabinets</a></li>
                             <li><a href="#">Coffee & Tables</a></li>
                             <li><a href="#">Outdoor Furniture </a></li>
-                        </ul> 
-                    </nav> 
+                        </ul>
+                    </nav>
                 </div>
-            </div> 
+            </div>
 
             <div class="social-icons">
-                <a href="#" class="social-icon" target="_blank" title="Facebook"><i
-                        class="icon-facebook-f"></i></a>
-                <a href="#" class="social-icon" target="_blank" title="Twitter"><i
-                        class="icon-twitter"></i></a>
-                <a href="#" class="social-icon" target="_blank" title="Instagram"><i
-                        class="icon-instagram"></i></a>
-                <a href="#" class="social-icon" target="_blank" title="Youtube"><i
-                        class="icon-youtube"></i></a>
-            </div> 
-        </div> 
-    </div> 
+                <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+            </div>
+        </div>
+    </div>
 
     <!-- Sign in / Register Modal -->
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -232,28 +223,23 @@
                         <div class="form-tab">
                             <ul class="nav nav-pills nav-fill nav-border-anim" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin"
-                                        role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register"
-                                        role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="tab-content-5">
-                                <div class="tab-pane fade show active" id="signin" role="tabpanel"
-                                    aria-labelledby="signin-tab">
+                                <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
                                     <form action="#">
                                         <div class="form-group">
                                             <label for="singin-email">Username or email address *</label>
-                                            <input type="text" class="form-control" id="singin-email"
-                                                name="singin-email" required>
+                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
                                             <label for="singin-password">Password *</label>
-                                            <input type="password" class="form-control" id="singin-password"
-                                                name="singin-password" required>
+                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
@@ -263,8 +249,7 @@
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input"
-                                                    id="signin-remember">
+                                                <input type="checkbox" class="custom-control-input" id="signin-remember">
                                                 <label class="custom-control-label" for="signin-remember">Remember
                                                     Me</label>
                                             </div><!-- End .custom-checkbox -->
@@ -290,19 +275,16 @@
                                         </div><!-- End .row -->
                                     </div><!-- End .form-choice -->
                                 </div>
-                                <div class="tab-pane fade" id="register" role="tabpanel"
-                                    aria-labelledby="register-tab">
+                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                                     <form action="#">
                                         <div class="form-group">
                                             <label for="register-email">Your email address *</label>
-                                            <input type="email" class="form-control" id="register-email"
-                                                name="register-email" required>
+                                            <input type="email" class="form-control" id="register-email" name="register-email" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
                                             <label for="register-password">Password *</label>
-                                            <input type="password" class="form-control" id="register-password"
-                                                name="register-password" required>
+                                            <input type="password" class="form-control" id="register-password" name="register-password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
@@ -312,8 +294,7 @@
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input"
-                                                    id="register-policy" required>
+                                                <input type="checkbox" class="custom-control-input" id="register-policy" required>
                                                 <label class="custom-control-label" for="register-policy">I agree to
                                                     the <a href="#">privacy policy</a> *</label>
                                             </div><!-- End .custom-checkbox -->
@@ -337,13 +318,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
-        </div> 
-    </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
@@ -351,15 +332,13 @@
                 <div class="row no-gutters bg-white newsletter-popup-content">
                     <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                         <div class="banner-content text-center">
-                            <img src="/website/assets/images/popup/newsletter/logo.png" class="logo" alt="logo"
-                                width="60" height="15">
+                            <img src="/website/assets/images/popup/newsletter/logo.png" class="logo" alt="logo" width="60" height="15">
                             <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
                             <p>Subscribe to the Molla eCommerce newsletter to receive timely updates from your favorite
                                 products.</p>
                             <form action="#">
                                 <div class="input-group input-group-round">
-                                    <input type="email" class="form-control form-control-white"
-                                        placeholder="Your Email Address" aria-label="Email Adress" required>
+                                    <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
                                     <div class="input-group-append">
                                         <button class="btn" type="submit"><span>go</span></button>
                                     </div><!-- .End .input-group-append -->
@@ -373,8 +352,7 @@
                         </div>
                     </div>
                     <div class="col-xl-2-5col col-lg-5 ">
-                        <img src="/website/assets/images/popup/newsletter/img-1.jpg" class="newsletter-img"
-                            alt="newsletter">
+                        <img src="/website/assets/images/popup/newsletter/img-1.jpg" class="newsletter-img" alt="newsletter">
                     </div>
                 </div>
             </div>
@@ -383,7 +361,7 @@
     <!-- Plugins JS File -->
     <script src="{{ asset('/website/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('/website/assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="/{{ asset('website/assets/js/jquery.hoverIntent.min.js') }}"></script>
+    <script src="{{ asset('website/assets/js/jquery.hoverIntent.min.js') }}"></script>
     <script src="{{ asset('/website/assets/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('/website/assets/js/superfish.min.js') }}"></script>
     <script src="{{ asset('/website/assets/js/owl.carousel.min.js') }}"></script>

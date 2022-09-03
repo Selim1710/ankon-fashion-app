@@ -124,14 +124,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/delete/product/{id}', [ProductController::class, 'delete'])->name('admin.delete.product');
         Route::get('/view/product/image/{id}', [ProductController::class, 'view'])->name('admin.view.product');
 
-        // Stock
-        Route::get('/manage/stock', [StockController::class, 'manageStock'])->name('admin.manage.stock');
-        Route::get('/add/stock', [StockController::class, 'add'])->name('admin.add.stock');
-        Route::post('/store/stock', [StockController::class, 'store'])->name('admin.store.stock');
-        Route::get('/edit/stock/{id}', [StockController::class, 'edit'])->name('admin.edit.stock');
-        Route::post('/update/stock/{id}', [StockController::class, 'update'])->name('admin.update.stock');
-        Route::get('/delete/stock/{id}', [StockController::class, 'delete'])->name('admin.delete.stock');
-
         // Offer
         Route::get('/manage/offer', [OfferController::class, 'manageOffer'])->name('admin.manage.offer');
         Route::get('/add/offer', [OfferController::class, 'add'])->name('admin.add.offer');
