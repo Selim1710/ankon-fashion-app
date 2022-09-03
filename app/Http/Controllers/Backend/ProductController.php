@@ -33,26 +33,26 @@ class ProductController extends Controller
             'description' => 'required',
             'subCategory_id' => 'required',
         ]);
-            $new_product = Product::create([
-                'name' => $request->name,
-                'old_price'  => $request->old_price,
-                'new_price' => $request->new_price,
-                'offer' => $request->offer,
-                'size' => json_encode($request->size),
-                'description' => $request->description,
+        $new_product = Product::create([
+            'name' => $request->name,
+            'old_price'  => $request->old_price,
+            'new_price' => $request->new_price,
+            'offer' => $request->offer,
+            'size' => json_encode($request->size),
+            'description' => $request->description,
 
-                'subCategory_id' => $request->subCategory_id,
-            ]);
+            'subCategory_id' => $request->subCategory_id,
+        ]);
         $filename = array();
         if ($request->has('images')) {
             $files = $request->file('images');
             foreach ($files as $file) {
-                $filename =date('Ymdmhs').'-image-' . rand(0,1000) . '.' . $file->getClientOriginalExtension();
-                 $file->move(public_path('/uploads/products'), $filename);
-                 ProductImage::create([
+                $filename = date('Ymdmhs') . '-image-' . rand(0, 1000) . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('/uploads/products'), $filename);
+                ProductImage::create([
                     'images' => json_encode($filename),
-                    'product_id'=>$new_product->id,
-                 ]);
+                    'product_id' => $new_product->id,
+                ]);
             }
             return redirect()->route('admin.manage.product')->with('message', 'Product added successfully');
         }
@@ -67,7 +67,8 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->update([
             'name' => $request->name,
-            'price' => $request->price,
+            'old_price'  => $request->old_price,
+            'new_price' => $request->new_price,
             'offer' => $request->offer,
             'description' => $request->description,
         ]);
@@ -89,22 +90,7 @@ class ProductController extends Controller
 
     public function view($id)
     {
-        $productImages = ProductImage::where('product_id',$id)->get();
-        // dd($productImages);
+        $productImages = ProductImage::where('product_id', $id)->get();
         return view('admin.layouts.product.view_product', compact('productImages'));
-    }
-    public function change(Request $request, $id)
-    {
-        $product = Product::find($id);
-        $filename = '';
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('/uploads/products'), $filename);
-        }
-        $product->update([
-            'image' => $filename,
-        ]);
-        return redirect()->route('admin.manage.product')->with('message', 'Product Image Updated');
     }
 }

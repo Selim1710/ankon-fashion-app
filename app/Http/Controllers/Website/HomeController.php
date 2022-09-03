@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Offer;
-use App\Models\Stock;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -160,8 +158,7 @@ class HomeController extends Controller
     public function productDetails($id)
     {
         $product = Product::find($id);
-        $stocks = Stock::where('product_id', '=', $id)->get();
-        return view('website.layouts.product_details', compact('product', 'stocks'));
+        return view('website.layouts.product_details', compact('product'));
     }
 
     public function refundPolicy()

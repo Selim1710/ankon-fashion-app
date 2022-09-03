@@ -123,7 +123,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('admin.update.product');
         Route::get('/delete/product/{id}', [ProductController::class, 'delete'])->name('admin.delete.product');
         Route::get('/view/product/image/{id}', [ProductController::class, 'view'])->name('admin.view.product');
-        Route::post('/change/product/image/{id}', [ProductController::class, 'change'])->name('admin.change.product.image');
 
         // Stock
         Route::get('/manage/stock', [StockController::class, 'manageStock'])->name('admin.manage.stock');
