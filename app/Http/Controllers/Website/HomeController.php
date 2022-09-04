@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Offer;
+use App\Models\ProductImage;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
@@ -158,8 +159,12 @@ class HomeController extends Controller
 
     public function productDetails($id)
     {
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         $product = Product::find($id);
-        return view('website.layouts.product_details', compact('product'));
+        $productImages = ProductImage::where('product_id',$id)->get();
+        // dd($productImages);
+        return view('website.layouts.product_details', compact('categories','productImages','products','product'));
     }
 
     public function refundPolicy()

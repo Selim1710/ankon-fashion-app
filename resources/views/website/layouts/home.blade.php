@@ -77,9 +77,9 @@
 
             <div class="product product-2">
                 <figure class="product-media">
-                    <span class="product-label label-circle label-top">Top</span>
+                    
                     <!-- image -->
-                    <a href="#">
+                    <a href="{{ route('website.product.details',$product->id) }}">
                         @if($product->productImage)
                         @foreach ($product->productImage as $image)
                         @if($loop->first)
@@ -107,9 +107,9 @@
                     <div class="product-cat">
                         <a href="#">{{ $product->name }}</a>
                     </div>
-                    <h3 class="product-title">{{ $product->offer }}</h3>
+                    <h3 class="product-title">{{ $product->new_price }} </h3>
 
-                    <div class="product-price">
+                    <div class="product-price" style="text-decoration:line-through;">
                         {{ $product->old_price }}
                     </div>
                     <div class="ratings-container">
@@ -172,8 +172,8 @@
                         @foreach($products as $product)
                         <div class="product product-2">
                             <figure class="product-media">
-                                <span class="product-label label-circle label-top">Top</span>
-                                <a href="#">
+                                
+                                <a href="{{ route('website.product.details',$product->id) }}">
                                     @if($product->productImage)
                                     @foreach ($product->productImage as $image)
                                     @if($loop->first)
@@ -196,9 +196,9 @@
                                 <div class="product-cat">
                                     <a href="#">{{ $product->name }}</a>
                                 </div>
-                                <h3 class="product-title"><a href="product.html">{{ $product->offer }}</a></h3>
-                                <div class="product-price">
-                                    {{ $product->price }}
+                                <h3 class="product-title">{{ $product->new_price }}</h3>
+                                <div class="product-price" style="text-decoration:line-through;">
+                                    {{ $product->old_price }}
                                 </div>
                                 <div class="ratings-container">
                                     <div class="ratings">
@@ -242,8 +242,8 @@
                     @foreach($products as $product)
                     <div class="product product-2">
                         <figure class="product-media">
-                            <span class="product-label label-circle label-top">Top</span>
-                            <a href="#">
+                            
+                            <a href="{{ route('website.product.details',$product->id) }}">
                                 @if($product->productImage)
                                 @foreach ($product->productImage as $image)
                                 @if($loop->first)
@@ -266,9 +266,9 @@
                             <div class="product-cat">
                                 <a href="#">{{ $product->name }}</a>
                             </div>
-                            <h3 class="product-title"><a href="product.html">{{ $product->offer }}</a></h3>
-                            <div class="product-price">
-                                {{ $product->price }}
+                            <h3 class="product-title">{{ $product->new_price }}</h3>
+                            <div class="product-price" style="text-decoration:line-through;">
+                                {{ $product->old_price }}
                             </div>
                             <div class="ratings-container">
                                 <div class="ratings">
