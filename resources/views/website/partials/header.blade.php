@@ -188,7 +188,7 @@
                         <nav class="side-nav">
                             <ul class="menu-vertical sf-arrows">
                                 @foreach ($categories as $category)
-                                <li class="item-lead"><a href="#">{{ $category->category_name }}</a></li>
+                                <li class="item-lead"><a href="{{ route('show.category.product',$category->id) }}">{{ $category->category_name }}</a></li>
                                 @endforeach
                             </ul>
                         </nav>
@@ -233,7 +233,7 @@
                                 </div>
                             </div>
                         </li>
-                        <!-- product -->
+                        <!-- sub-category -->
                         <li>
                             <a href="#" class="sf-with-ul">Choose Product</a>
 
@@ -244,7 +244,7 @@
                                     <ul>
                                         @if ( $category->subCategories )
                                         @foreach ($category->subCategories as $subCategory)
-                                        <li><a href="">{{ $subCategory->sub_category_name }}</a></li>
+                                        <li><a href="{{ route('show.sub.category.product',$subCategory->id) }}">{{ $subCategory->sub_category_name }}</a></li>
                                         @endforeach
                                         @else
                                         <li><a href=""></a></li>

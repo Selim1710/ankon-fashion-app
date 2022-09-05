@@ -32,10 +32,10 @@ Route::group(['prefix' => 'website'], function () {
     Route::post('/user/filter/all/product', [HomeController::class, 'filterAllProduct'])->name('user.filter.all.product');
 
 
-    // see all categories
+    // sub-category product
     Route::get('/show/sub/category/product/{id}', [HomeController::class, 'subCategoryProduct'])->name('show.sub.category.product');
 
-    // featured categories
+    // category product
     Route::get('/show/category/product/{id}', [HomeController::class, 'categoryProduct'])->name('show.category.product');
 
     // offers

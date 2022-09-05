@@ -43,18 +43,20 @@ class HomeController extends Controller
     public function categoryProduct($id)
     {
         $category = Category::find($id);
+        $categories = Category::with('subCategories')->get();
         $subCategory = Subcategory::where('category_id', '=', $id)->get();
         foreach ($subCategory as $sub) {
             $products = Product::where('subCategory_id', '=', $sub->id)->orderBy('id', 'DESC')->get();
         }
-        return view('website.layouts.category_product', compact('products'));
+        return view('website.layouts.category_product', compact('products','categories'));
     }
 
     public function subCategoryProduct($id)
     {
+        $categories = Category::with('subCategories')->get();
         $subCategory = Subcategory::find($id);
         $products = Product::where('subCategory_id', '=', $id)->orderBy('id', 'DESC')->get();
-        return view('website.layouts.sub_category_product', compact('products'));
+        return view('website.layouts.sub_category_product', compact('categories','products'));
     }
 
     ////////////////////////// price shorting ////////////////////////// 

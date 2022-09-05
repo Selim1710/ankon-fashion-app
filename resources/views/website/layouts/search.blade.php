@@ -19,7 +19,7 @@
                 <div class="row bg-white">
                     @foreach ($products as $product)
                     <div class="col-4 col-lg-2 mt-2 mb-2">
-                        <a href="#">
+                        <a href="{{ route('website.product.details',$product->id) }}">
                             <div class="card">
                                 <div class="card-img">
                                     @foreach ($product->productImage as $image)
