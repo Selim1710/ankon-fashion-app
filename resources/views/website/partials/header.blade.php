@@ -60,7 +60,11 @@
                         <div class="header-search-wrapper search-wrapper-wide">
                             <label for="q" class="sr-only">Search</label>
                             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
+                            @if(empty($search))
+                            <input type="search" name="search" class="form-control" id="q" placeholder="Search product ..." required>
+                            @else
+                            <input type="search" name="search" value="{{ $search }}" class="form-control" id="q" placeholder="Search product ..." required>
+                            @endif
                         </div>
                     </form>
                 </div>

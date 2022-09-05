@@ -24,12 +24,10 @@ class HomeController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != "") {
-            $products = Product::where('model', 'LIKE', '%' . $search . '%')
-                ->orwhere('product_name', 'LIKE', '%' . $search . '%')
+            $products = Product::with('productImage')->where('name', 'LIKE', '%' . $search . '%')
                 ->orderBy('id', 'DESC')
                 ->get();
-            $result = Product::where('model', 'LIKE', '%' . $search . '%')
-                ->orwhere('product_name', 'LIKE', '%' . $search . '%')
+            $result = Product::where('name', 'LIKE', '%' . $search . '%')
                 ->get()
                 ->count();
                 $categories = Category::with('subCategories')->get();
