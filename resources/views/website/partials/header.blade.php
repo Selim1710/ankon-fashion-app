@@ -115,7 +115,7 @@
                         </div>
                         <p>Cart</p>
                     </a>
-                    {{-- mobile sidebar --}}
+                    <!-- mobile sidebar -->
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-cart-products">
                             <div class="product">
@@ -148,7 +148,7 @@
                                         <span class="cart-product-qty">1</span>
                                         x $76.00
                                     </span>
-                                </div><!-- End .product-cart-details -->
+                                </div>
 
                                 <figure class="product-image-container">
                                     <a href="#" class="product-image">
@@ -156,8 +156,8 @@
                                     </a>
                                 </figure>
                                 <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                            </div><!-- End .product -->
-                        </div><!-- End .cart-product -->
+                            </div>
+                        </div>
 
                         <div class="dropdown-cart-total">
                             <span>Total</span>
