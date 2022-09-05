@@ -62,26 +62,14 @@ class HomeController extends Controller
     ////////////////////////// price shorting ////////////////////////// 
     public function allProduct()
     {
-        $products = Product::with('subCategory')->orderBy('id', 'DESC')->paginate(16);
-        $processor = Product::pluck('processor')->unique();
-        $display = Product::pluck('display')->unique();
-        $memory = Product::pluck('memory')->unique();
-        $graphics = Product::pluck('graphics')->unique();
-        $operating = Product::pluck('operating_system')->unique();
-        $battery = Product::pluck('battery')->unique();
-
-        return view('website.layouts.all_product', compact('products', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(16);
+        return view('website.layouts.all_product', compact('products', 'categories'));
     }
 
     public function lowPrice()
     {
         $products = Product::where('regular_price', '<', '20000')->orderBy('id', 'DESC')->paginate(16);
-        $processor = Product::pluck('processor')->unique();
-        $display = Product::pluck('display')->unique();
-        $memory = Product::pluck('memory')->unique();
-        $graphics = Product::pluck('graphics')->unique();
-        $operating = Product::pluck('operating_system')->unique();
-        $battery = Product::pluck('battery')->unique();
 
         return view('website.layouts.all_product', compact('products', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
     }
@@ -90,12 +78,6 @@ class HomeController extends Controller
     {
         $max = 50000;
         $min = 20000;
-        $processor = Product::pluck('processor')->unique();
-        $display = Product::pluck('display')->unique();
-        $memory = Product::pluck('memory')->unique();
-        $graphics = Product::pluck('graphics')->unique();
-        $operating = Product::pluck('operating_system')->unique();
-        $battery = Product::pluck('battery')->unique();
         $products = Product::whereBetween('regular_price', [$min, $max])->orderBy('id', 'DESC')->paginate(16);
 
         return view('website.layouts.all_product', compact('products', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
@@ -103,12 +85,6 @@ class HomeController extends Controller
     public function highPrice()
     {
         $products = Product::where('regular_price', '>', '50000')->orderBy('id', 'DESC')->paginate(16);
-        $processor = Product::pluck('processor')->unique();
-        $display = Product::pluck('display')->unique();
-        $memory = Product::pluck('memory')->unique();
-        $graphics = Product::pluck('graphics')->unique();
-        $operating = Product::pluck('operating_system')->unique();
-        $battery = Product::pluck('battery')->unique();
 
         return view('website.layouts.all_product', compact('products', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
     }

@@ -77,7 +77,7 @@
 
             <div class="product product-2">
                 <figure class="product-media">
-                    
+
                     <!-- image -->
                     <a href="{{ route('website.product.details',$product->id) }}">
                         @if($product->productImage)
@@ -172,7 +172,7 @@
                         @foreach($products as $product)
                         <div class="product product-2">
                             <figure class="product-media">
-                                
+
                                 <a href="{{ route('website.product.details',$product->id) }}">
                                     @if($product->productImage)
                                     @foreach ($product->productImage as $image)
@@ -236,13 +236,12 @@
 
         <div class="products">
             <div class="row justify-content-center">
-
-
+                @foreach($products as $product)
                 <div class="col-6 col-md-4 col-lg-3">
-                    @foreach($products as $product)
+
                     <div class="product product-2">
                         <figure class="product-media">
-                            
+
                             <a href="{{ route('website.product.details',$product->id) }}">
                                 @if($product->productImage)
                                 @foreach ($product->productImage as $image)
@@ -284,10 +283,8 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
                 </div>
-
-
+                @endforeach
             </div>
         </div>
     </div>

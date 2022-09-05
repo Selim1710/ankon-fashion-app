@@ -223,7 +223,7 @@
                                         @endforeach
                                     </div>
                                     <div class="megamenu-action text-center">
-                                        <a href="#" class="btn btn-outline-primary-2 view-all-demos">
+                                        <a href="{{ route('website.all.product') }}" class="btn btn-outline-primary-2">
                                             <span>
                                                 view all product
                                             </span>
