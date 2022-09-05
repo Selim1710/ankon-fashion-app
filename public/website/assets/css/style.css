@@ -21,6 +21,44 @@ body {
     overflow-x: hidden
 }
 
+/* card start here */
+.product-card a{
+    color: #000;
+}
+.product-card a:hover{
+    text-decoration: none;
+}
+.card{
+    border: 1px solid #dfe6e9;
+    border-radius: 10px;
+}
+.card:hover{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.card .card-img{
+    height:169px;
+    width: auto;
+}
+.card .card-img img{
+    height:100%;
+    width: 100%;
+    border-radius: 10px;
+}
+.card .card-desc{
+    font-size:1.3rem; 
+    text-align:center;
+}
+
+
+@media (max-width: 768px){
+    .card .card-img{
+        height:95px;
+        width: auto;
+    }
+}
+
+/* card end here */
+
 ::-moz-selection {
     color: #fff;
     background-color: #c96

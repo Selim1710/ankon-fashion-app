@@ -47,14 +47,16 @@
                     <span class="sr-only">Toggle mobile menu</span>
                     <i class="icon-bars"></i>
                 </button>
-                <a href="#" class="logo">
+                <a href="{{ route('website.home') }}" class="logo">
                     <img src="/website/images/logo.png" alt="AN Logo" width="105" height="25">
                 </a>
             </div>
+            <!-- search -->
             <div class="header-center">
                 <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
                     <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                    <form action="#" method="get">
+                    <form action="{{ route('website.search') }}" method="POST">
+                        @csrf
                         <div class="header-search-wrapper search-wrapper-wide">
                             <label for="q" class="sr-only">Search</label>
                             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
@@ -208,7 +210,7 @@
                                             <a href="">
                                                 <img src="{{ asset('uploads/products/'.json_decode($image->images)) }}" class="img-fluid">
                                                 <span class="demo-title">{{ $product->name }}</span>
-                                            </a> 
+                                            </a>
                                             @endif
                                             @endforeach
                                             @endif
@@ -227,7 +229,7 @@
                                 </div>
                             </div>
                         </li>
-<!-- product -->
+                        <!-- product -->
                         <li>
                             <a href="#" class="sf-with-ul">Choose Product</a>
 
