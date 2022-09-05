@@ -163,8 +163,8 @@ class HomeController extends Controller
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         $product = Product::find($id);
         $productImages = ProductImage::where('product_id',$id)->get();
-        // dd($productImages);
-        return view('website.layouts.product_details', compact('categories','productImages','products','product'));
+        $subCatProduct = Product::with('productImage')->where('subCategory_id',$product->subCategory_id)->get();
+        return view('website.layouts.product_details', compact('categories','productImages','products','product','subCatProduct'));
     }
 
     public function refundPolicy()
