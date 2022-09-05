@@ -21,10 +21,11 @@
                                 <button class="border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                                     Price
                                 </button>
-                                <div class="dropdown-menu" style="font-size: 1.3rem;" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">low</a>
-                                    <a class="dropdown-item" href="#">mid</a>
-                                    <a class="dropdown-item" href="#">high</a>
+                                <div class="dropdown-menu text-capitalize" style="font-size: 1.3rem;" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{ route('website.all.product') }}">all</a>    
+                                <a class="dropdown-item" href="{{ route('website.shorting.low.price') }}">low(1k)</a>
+                                    <a class="dropdown-item" href="{{ route('website.shorting.mid.price') }}">mid(2k)</a>
+                                    <a class="dropdown-item" href="{{ route('website.shorting.high.price') }}">high(2k up)</a>
                                 </div>
                             </div>
                         </div>

@@ -30,13 +30,13 @@ class HomeController extends Controller
             $result = Product::where('name', 'LIKE', '%' . $search . '%')
                 ->get()
                 ->count();
-                $categories = Category::with('subCategories')->get();
-            return view('website.layouts.search', compact('products', 'search', 'result','categories'));
+            $categories = Category::with('subCategories')->get();
+            return view('website.layouts.search', compact('products', 'search', 'result', 'categories'));
         } else {
             $categories = Category::with('subCategories')->get();
             $products = Product::with('subCategory')->orderBy('id', 'DESC')->get();
             $result = '0';
-            return view('website.layouts.search', compact('products', 'search', 'result','categories'));
+            return view('website.layouts.search', compact('products', 'search', 'result', 'categories'));
         }
     }
 
@@ -48,7 +48,7 @@ class HomeController extends Controller
         foreach ($subCategory as $sub) {
             $products = Product::where('subCategory_id', '=', $sub->id)->orderBy('id', 'DESC')->get();
         }
-        return view('website.layouts.category_product', compact('products','categories'));
+        return view('website.layouts.category_product', compact('products', 'categories'));
     }
 
     public function subCategoryProduct($id)
@@ -56,7 +56,7 @@ class HomeController extends Controller
         $categories = Category::with('subCategories')->get();
         $subCategory = Subcategory::find($id);
         $products = Product::where('subCategory_id', '=', $id)->orderBy('id', 'DESC')->get();
-        return view('website.layouts.sub_category_product', compact('categories','products'));
+        return view('website.layouts.sub_category_product', compact('categories', 'products'));
     }
 
     ////////////////////////// price shorting ////////////////////////// 
@@ -69,24 +69,24 @@ class HomeController extends Controller
 
     public function lowPrice()
     {
-        $products = Product::where('regular_price', '<', '20000')->orderBy('id', 'DESC')->paginate(16);
-
-        return view('website.layouts.all_product', compact('products', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
+        $categories = Category::with('subCategories')->get();
+        $products = Product::where('new_price', '<', '1000')->orderBy('id', 'DESC')->paginate(16);
+        return view('website.layouts.all_product', compact('products','categories'));
     }
 
     public function midPrice()
     {
-        $max = 50000;
-        $min = 20000;
-        $products = Product::whereBetween('regular_price', [$min, $max])->orderBy('id', 'DESC')->paginate(16);
-
-        return view('website.layouts.all_product', compact('products', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
+        $categories = Category::with('subCategories')->get();
+        $max = 2000;
+        $min = 1000;
+        $products = Product::whereBetween('new_price', [$min, $max])->orderBy('id', 'DESC')->paginate(16);
+        return view('website.layouts.all_product', compact('products','categories'));
     }
     public function highPrice()
     {
-        $products = Product::where('regular_price', '>', '50000')->orderBy('id', 'DESC')->paginate(16);
-
-        return view('website.layouts.all_product', compact('products', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
+        $categories = Category::with('subCategories')->get();
+        $products = Product::where('new_price', '>', '2001')->orderBy('id', 'DESC')->paginate(16);
+        return view('website.layouts.all_product', compact('products','categories'));
     }
 
     ////////////////////////// prodcut filtering ////////////////////////// 
@@ -120,7 +120,7 @@ class HomeController extends Controller
             $operating = Product::pluck('operating_system')->unique();
             $battery = Product::pluck('battery')->unique();
         }
-        return view('website.layouts.all_product_filter', compact('products', 'result', 'processor', 'display', 'memory', 'graphics', 'operating', 'battery'));
+        return view('website.layouts.all_product_filter', compact('products', 'result'));
     }
 
     ////////////////////////// The end ////////////////////////// 
@@ -140,9 +140,9 @@ class HomeController extends Controller
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         $product = Product::find($id);
-        $productImages = ProductImage::where('product_id',$id)->get();
-        $subCatProduct = Product::with('productImage')->where('subCategory_id',$product->subCategory_id)->get();
-        return view('website.layouts.product_details', compact('categories','productImages','products','product','subCatProduct'));
+        $productImages = ProductImage::where('product_id', $id)->get();
+        $subCatProduct = Product::with('productImage')->where('subCategory_id', $product->subCategory_id)->get();
+        return view('website.layouts.product_details', compact('categories', 'productImages', 'products', 'product', 'subCatProduct'));
     }
 
     public function refundPolicy()
