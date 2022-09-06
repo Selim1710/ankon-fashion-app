@@ -47,11 +47,10 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/laptop/deals/details/{id}', [HomeController::class, 'laptopDealsDetails'])->name('website.deals.details');
 
     // login
-    Route::get('/login/form', [UserController::class, 'loginForm'])->name('users.login.form');
+    Route::get('/login/form', [UserController::class, 'loginForm'])->name('user.login.form');
     Route::post('/user/do/login', [UserController::class, 'doLogin'])->name('user.do.login');
     Route::get('/check/banned', [UserController::class, 'checkBanned'])->name('website.check.banned');
 
-    Route::get('/registration/form', [UserController::class, 'registrationForm'])->name('user.registration.form');
     Route::post('/user/do/registration', [UserController::class, 'doRegistration'])->name('user.do.registration');
     Route::get('/user/logout', [UserController::class, 'logout'])->name('user.logout');
 

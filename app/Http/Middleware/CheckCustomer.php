@@ -12,7 +12,7 @@ class CheckCustomer
         if (auth()->user()) {
             return $next($request);
         }else{
-            return redirect()->route('users.login.form')->with('error','To Buy Any Product.You Have To login first');
+            return redirect()->route('user.login.form')->with('error','To Buy Any Product.You Have To login first');
         }
     }
 }

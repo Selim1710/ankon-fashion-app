@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,7 +16,10 @@ class UserController extends Controller
 
     public function loginForm()
     {
-        return view('website.pages.login');
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+
+        return view('website.pages.login',compact('categories','products'));
     }
     public function doLogin(Request $request)
     {
@@ -39,11 +44,7 @@ class UserController extends Controller
             return redirect()->route('website.home')->with('message', 'Login Successful');
         }
     }
-
-    public function registrationForm()
-    {
-        return view('website.pages.registration');
-    }
+    
     public function doRegistration(Request $request)
     {
         $request->validate([

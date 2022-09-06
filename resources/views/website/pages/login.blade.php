@@ -1,49 +1,136 @@
-<!doctype html>
-<html lang="en">
+@extends('website.master')
+@section('contents')
+<div class="page-wrapper">
+    <main class="main">
+        <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17" style="background-image: url('assets/images/backgrounds/login-bg.jpg')">
+            <div class="container">
+                <div class="form-box">
+                    <div class="form-tab">
+                        <ul class="nav nav-pills nav-fill" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="signin-tab-2" data-toggle="tab" href="#signin-2" role="tab" aria-controls="signin-2" aria-selected="false">Sign In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="register-tab-2" data-toggle="tab" href="#register-2" role="tab" aria-controls="register-2" aria-selected="true">Register</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade  show active" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
+                                <!-- login -->
+                                <form action="{{ route('user.do.login') }}">
+                                    <div class="form-group">
+                                        <label for="singin-email">Username/Email</label>
+                                        <input type="text"  name="email" class="form-control" id="singin-email" required>
+                                    </div>
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <!-- style -->
-    <link rel="stylesheet" href="{{ asset('website/login/form.css') }}">
+                                    <div class="form-group">
+                                        <label for="singin-password">Password *</label>
+                                        <input type="password" name="password" class="form-control" id="singin-password" required>
+                                    </div>
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>User login form</title>
-</head>
+                                    <div class="form-footer">
+                                        <button type="submit" class="btn btn-outline-primary-2">
+                                            <span>LOG IN</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
 
-<body>
-    <div class="wrapper fadeInDown">
-        <!-- Message -->
-        @if (session()->has('error'))
-            <p class="alert alert-danger">{{ session()->get('error') }}</p>
-        @endif
-        @if (session()->has('message'))
-            <p class="alert alert-success text-center">{{ session()->get('message') }}</p>
-        @endif
-        <!-- end -->
-        <div id="formContent">
-            <div class="fadeIn first">
-                <br>
-                <p>Please! Login from here</p>
-            </div>
-            <form action="{{ route('user.do.login') }}" method="POST">
-                @csrf
-                <input type="email" name="email" class="fadeIn second" placeholder="Enter Email" required>
-                <input type="password" name="password" class="fadeIn third" placeholder="Enter Password" required>
-                <input type="submit" class="fadeIn fourth" value="Sign In">
-            </form>
-            <div id="formFooter">
-                <h4 class="underlineHover mr-2">Forgot password?</h4> <br>
-                <strong>if not register</strong>
-                <a href="{{ route('user.registration.form') }}" class="btn btn-success text-uppercase">Sign Up</a>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="signin-remember-2">
+                                            <label class="custom-control-label" for="signin-remember-2">Remember Me</label>
+                                        </div>
+
+                                        <a href="#" class="forgot-link">Forgot Your Password?</a>
+                                    </div>
+                                </form>
+                                <div class="form-choice">
+                                    <p class="text-center">or sign in with</p>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <a href="#" class="btn btn-login btn-g">
+                                                <i class="icon-google"></i>
+                                                Login With Google
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <a href="#" class="btn btn-login btn-f">
+                                                <i class="icon-facebook-f"></i>
+                                                Login With Facebook
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+                                <!-- register -->
+                                <form action="{{ route('user.do.registration') }}">
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" name="name" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email"> Email</label>
+                                        <input type="email" name="email" class="form-control" id="email" required>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="password">Password</label>
+                                            <input type="password" name="password" class="form-control" id="password" required>
+                                        </div>
+                                        <div class="col-6">
+                                        <label for="confirm_password">Re-enter Password</label>
+                                        <input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input type="tel" name="phone" class="form-control" id="phone" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">address</label>
+                                        <input type="text" name="address" class="form-control" id="address" required>
+                                    </div>
+
+                                    <div class="form-footer">
+                                        <button type="submit" class="btn btn-outline-primary-2">
+                                            <span>SIGN UP</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
+                                            <label class="custom-control-label" for="register-policy-2">I agree to the <a href="#">privacy policy</a> *</label>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="form-choice">
+                                    <p class="text-center">or sign in with</p>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <a href="#" class="btn btn-login btn-g">
+                                                <i class="icon-google"></i>
+                                                Login With Google
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <a href="#" class="btn btn-login  btn-f">
+                                                <i class="icon-facebook-f"></i>
+                                                Login With Facebook
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </main>
 
-</html>
+
+</div>
+
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+@endsection

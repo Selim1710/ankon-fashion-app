@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
+                            <li><a href="{{ route('user.login.form') }}">Accounts</a></li>
                         </ul>
                     </li>
                 </ul>
