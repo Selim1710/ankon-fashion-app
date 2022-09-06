@@ -31,7 +31,7 @@ class UserController extends Controller
         if (Auth::attempt($userData)) {
             return redirect()->route('website.check.banned');
         } else {
-            return redirect()->route('users.login.form')->with('error', 'Invalid username or password');
+            return redirect()->route('user.login.form')->with('error', 'Invalid username or password');
         }
     }
 
@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         if (auth()->user()->status != 'active') {
             Auth::logout();
-            return redirect()->route('users.login.form')->with('error', 'you have banned');
+            return redirect()->route('user.login.form')->with('error', 'you have banned');
         } else {
             return redirect()->route('website.home')->with('message', 'Login Successful');
         }
@@ -65,7 +65,7 @@ class UserController extends Controller
                 "address" => $request->address,
                 "phone" => $request->phone,
             ]);
-            return redirect()->route('users.login.form')->with('message', 'You have registered. Now you can login');
+            return redirect()->route('user.login.form')->with('message', 'You have registered. Now you can login');
         }
     }
 
