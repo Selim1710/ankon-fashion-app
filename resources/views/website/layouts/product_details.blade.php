@@ -263,7 +263,7 @@
                             @if($product->productImage)
                             @foreach($product->productImage as $image)
                             @if($loop->first)
-                            <a href="#">
+                            <a href="{{ route('website.product.details',$product->id) }}">
                                 <img src="{{ asset('/uploads/products/'.json_decode($image->images)) }}" alt="Product image" class="product-image">
                             </a>
                             @endif
@@ -282,9 +282,9 @@
 
                         <div class="product-body">
                             <div class="product-cat">
-                                <a href="#">{{ $product->name }}</a>
+                                {{ $product->name }}
                             </div>
-                            <h3 class="product-title"><a href="product.html"> {{ $product->new_price }} </h3><!-- End .product-title -->
+                            <h3 class="product-title">{{ $product->new_price }} </h3><!-- End .product-title -->
                             <div class="product-price" style="text-decoration: line-through;">
                                 {{ $product->old_price }}
                             </div>
