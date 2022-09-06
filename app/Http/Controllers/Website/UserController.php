@@ -78,10 +78,13 @@ class UserController extends Controller
     //////////////////// profile //////////////////// 
     public function profile($id)
     {
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+
         $user = User::find($id);
         $orders = Order::where('customer_id', '=', $id)->get();
         $total_product = Order::where('customer_id', $id)->count();
-        return view('website.pages.profile', compact('user', 'orders', 'total_product'));
+        return view('website.pages.profile', compact('user', 'orders', 'total_product','categories','products'));
     }
 
     public function edit($id)

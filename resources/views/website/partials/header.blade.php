@@ -32,7 +32,15 @@
                                     </div>
                                 </div>
                             </li>
+                            @if(auth()->user())
+                            <li>
+                                <a href="{{ route('user.profile',auth()->user()->id) }}">
+                                    <i class="la la-user"> Profile</i>
+                                </a>
+                            </li>
+                            @else
                             <li><a href="{{ route('user.login.form') }}">Accounts</a></li>
+                            @endif
                         </ul>
                     </li>
                 </ul>
@@ -101,7 +109,7 @@
                     <a href="#" title="Wishlist">
                         <div class="icon">
                             <i class="icon-heart-o"></i>
-                            <span class="wishlist-count badge">3</span>
+                            <span class="wishlist-count badge">-</span>
                         </div>
                         <p>Wishlist</p>
                     </a>
