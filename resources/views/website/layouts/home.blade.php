@@ -20,7 +20,6 @@
         </div>
         <span class="slider-loader"></span>
     </div>
-
     <div class="container">
         <h2 class="title text-center mb-4">Explore Popular Categories</h2>
         <div class="cat-blocks-container">
@@ -41,9 +40,7 @@
             </div>
         </div>
     </div>
-
     <div class="mb-4"></div>
-
     <div class="container new-arrivals">
         <div class="heading heading-flex mb-3">
             <div class="heading-left">
@@ -77,7 +74,6 @@
 
             <div class="product product-2">
                 <figure class="product-media">
-
                     <!-- image -->
                     <a href="{{ route('website.product.details',$product->id) }}">
                         @if($product->productImage)

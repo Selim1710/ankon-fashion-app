@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-3 border text-center mt-4">
-                        <a href="#">
+                        <a href="{{ route('user.edit.profile',$user->id) }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
                                 <i class="la la-edit"></i>
                             </div>
@@ -70,7 +70,7 @@
     </main>
 
 
-</div><!-- End .page-wrapper -->
+</div>
 <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
 <!-- Mobile Menu -->

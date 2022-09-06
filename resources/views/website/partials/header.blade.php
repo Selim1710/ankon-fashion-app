@@ -220,7 +220,7 @@
                                             @foreach ($product->productImage as $image)
                                             @if ($loop->first)
                                             <a href="">
-                                                <img src="{{ asset('uploads/products/'.json_decode($image->images)) }}" class="img-fluid">
+                                                <img src="{{ asset('uploads/products/'.json_decode($image->images)) }}" style="height:200px;width:auto;">
                                                 <span class="demo-title">{{ $product->name }}</span>
                                             </a>
                                             @endif

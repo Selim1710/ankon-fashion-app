@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,6 +12,7 @@ class CartController extends Controller
     public function cart($id)
     {
         $product = Product::find($id);
+        dd($product);
         if (!$product) {
             return redirect()->route('website.home')->with('error', 'there is no product into the cart');
         }
@@ -51,12 +51,14 @@ class CartController extends Controller
 
     public function clearCart()
     {
+        dd('clear');
         session()->forget('cart');
         return redirect()->route('website.home')->with('error', 'Cart Cleared');
     }
 
     public function remove($id)
     {
+        dd('remove');
         $cart = session()->get('cart');
         unset($cart[$id]);
         session()->put('cart', $cart);
@@ -66,6 +68,7 @@ class CartController extends Controller
 
     public function checkout()
     {
+        dd('checkout');
         $carts = session()->get('cart');
         if ($carts) {
             foreach ($carts as $cart)
@@ -92,13 +95,7 @@ class CartController extends Controller
     public function orderForm(Request $request, $id)
     {
         $product = Product::find($id);
-        $stock = Stock::where('id',$product->id)->get();
-        foreach($stock as $st_qty){
-            $st_qty->total_produce;
-        }
-        if ($st_qty->total_produce <= $request->quantity) {
-            return redirect()->back()->with('error', 'Out of stock');
-        }
+        dd($product);        
         $cartExist = session()->get('cart');
         // case-1:no cart
         if (!$cartExist) {
