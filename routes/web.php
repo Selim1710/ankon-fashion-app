@@ -59,7 +59,6 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/user/edit/profile/{id}', [UserController::class, 'edit'])->name('user.edit.profile');
     Route::post('/user/update/profile/{id}', [UserController::class, 'updateProfile'])->name('user.update.profile');
     Route::get('/user/view/order/list/{id}', [UserController::class, 'orderList'])->name('user.view.order.list');
-    Route::get('/user/view/my/cart', [UserController::class, 'myCart'])->name('user.view.my.cart');
 
     // product details
     Route::get('/product/details/{id}', [HomeController::class, 'productDetails'])->name('website.product.details');
@@ -71,8 +70,6 @@ Route::group(['prefix' => 'website'], function () {
         Route::get('/clear/cart', [CartController::class, 'clearCart'])->name('clear.cart');
         Route::get('/user/remove/cart/{id}', [CartController::class, 'remove'])->name('user.remove.cart');
         Route::get('/user/checkout', [CartController::class, 'checkout'])->name('user.checkout');
-        // order form
-        Route::get('/order/form/{id}', [CartController::class, 'orderForm'])->name('website.order.form');
     });
 
     // footer
@@ -133,7 +130,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/update/offer/{id}', [OfferController::class, 'update'])->name('admin.update.offer');
         Route::get('/delete/offer/{id}', [OfferController::class, 'delete'])->name('admin.delete.offer');
 
-        
+
         /////////////////////////// Table part ///////////////////////////
         // Order List
         Route::get('/manage/order', [ManageOrderController::class, 'manageOrder'])->name('admin.manage.order');

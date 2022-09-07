@@ -12,8 +12,8 @@ class CartController extends Controller
 {
     public function cart(Request $request, $id)
     {
-        $products = Product::with('productImage')->where('id',$id)->get();
-        foreach($products as $product){
+        $products = Product::with('productImage')->where('id', $id)->get();
+        foreach ($products as $product) {
             $productId = $product->id;
             $productName = $product->name;
             $productImage = $product->productImage;
@@ -67,25 +67,22 @@ class CartController extends Controller
         $carts = session()->get('cart');
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
-        return view('website.layouts.view_cart',compact('carts','categories','products'));
+        return view('website.layouts.view_cart', compact('carts', 'categories', 'products'));
     }
 
     public function clearCart()
     {
-        dd('clear');
         session()->forget('cart');
-        return redirect()->route('website.home')->with('error', 'Cart Cleared');
+        return redirect()->route('user.view.cart')->with('error', 'Cart Cleared');
     }
 
     public function remove($id)
     {
-        dd('remove');
         $cart = session()->get('cart');
         unset($cart[$id]);
         session()->put('cart', $cart);
         return redirect()->back()->with('error', 'Product deleted from cart');
     }
-
 
     public function checkout()
     {
@@ -110,43 +107,5 @@ class CartController extends Controller
             return redirect()->back()->with('message', 'Order place successfully. Now Click -- PROCESS TO PAY -- to confirm order');
         }
         return redirect()->back()->with('error', 'No data found into the cart');
-    }
-
-
-    public function orderForm(Request $request, $id)
-    {
-        $product = Product::find($id);
-        dd($product);        
-        $cartExist = session()->get('cart');
-        // case-1:no cart
-        if (!$cartExist) {
-            $cartData = [$id => [
-                'id' => $product->id,
-                'model' => $product->model,
-                'name' => $product->name,
-                'price' => $product->price,
-                'offer' => $product->offer,
-                'quantity' => $request->quantity,
-            ]];
-            session()->put('cart', $cartData);
-            return redirect()->back()->with('message', 'Product added into the cart');
-        }
-        // case-2:already one cart exist
-        if (!isset($cartExist[$id])) {
-            $cartExist[$id] = [
-                'id' => $product->id,
-                'model' => $product->model,
-                'name' => $product->name,
-                'price' => $product->price,
-                'offer' => $product->offer,
-                'quantity' => $request->quantity,
-            ];
-            session()->put('cart', $cartExist);
-            return redirect()->back()->with('message', 'Product added into the cart');
-        }
-        // case-3: same product adding into the cart
-        $cartExist[$id]['quantity'] = $cartExist[$id]['quantity'] + 1;
-        session()->put('cart', $cartExist);
-        return redirect()->back()->with('message', 'Product added into the cart');
     }
 }
