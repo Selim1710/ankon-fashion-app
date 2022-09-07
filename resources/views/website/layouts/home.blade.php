@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="product-action">
-                        <a href="#" class="btn-product btn-cart" title="Add to cart">
+                        <a href="{{ route('add.to.cart',$product->id) }}" class="btn-product btn-cart" title="Add to cart">
                             <span>
                                 add to cart
                             </span>

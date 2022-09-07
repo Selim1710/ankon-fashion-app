@@ -35,7 +35,7 @@
                         </a>
                     </div>
                     <div class="col-3 border text-center mt-4">
-                        <a href="#">
+                        <a href="{{ route('user.view.cart') }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
                             <i class="la la-shopping-cart"></i>
                             </div>
@@ -60,7 +60,7 @@
                             <i class="la la-key"></i>
                             </div>
                             <div class="card-body mt-1">
-                                <h5>Forget Password</h5>
+                                <h5>Change Password</h5>
                             </div>
                         </a>
                     </div>
