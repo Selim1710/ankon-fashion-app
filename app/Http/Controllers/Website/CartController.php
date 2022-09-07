@@ -97,7 +97,6 @@ class CartController extends Controller
                     'phone' => auth()->user()->phone,
                     'id' => $cart['id'],
                     'name' => $cart['name'],
-                    'model' => $cart['model'],
                     'price' => $cart['price'],
                     'offer' => $cart['offer'],
                     'quantity' => $cart['quantity'],

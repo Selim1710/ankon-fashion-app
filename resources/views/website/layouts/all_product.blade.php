@@ -35,7 +35,6 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
-                                            <span class="product-label label-new">New</span>
                                             <a href="{{ route('website.product.details',$product->id) }}">
                                                 @if($product->productImage)
                                                 @foreach ($product->productImage as $image)
@@ -45,16 +44,6 @@
                                                 @endforeach
                                                 @endif
                                             </a>
-
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                                <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                                                <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                            </div>
-
-                                            <div class="product-action">
-                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                            </div>
                                         </figure>
 
                                         <div class="product-body">

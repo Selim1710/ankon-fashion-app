@@ -212,13 +212,12 @@
                                             <div class="ratings-container">
                                                 <div class="ratings">
                                                     <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
-                                                </div><!-- End .ratings -->
-                                            </div><!-- End .rating-container -->
+                                                </div>
+                                            </div>
                                             <span class="review-date">5 days ago</span>
-                                        </div><!-- End .col -->
+                                        </div>
                                         <div class="col">
                                             <h4>Very good</h4>
-
                                             <div class="review-content">
                                                 <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
                                             </div>
@@ -264,7 +263,6 @@
                     @foreach ($subCatProduct as $product)
                     <div class="product product-7 text-center">
                         <figure class="product-media">
-                            <span class="product-label label-new">New</span>
                             @if($product->productImage)
                             @foreach($product->productImage as $image)
                             @if($loop->first)
@@ -274,17 +272,6 @@
                             @endif
                             @endforeach
                             @endif
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                                <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                            </div>
-
-                            <div class="product-action">
-                                <a href="{{ route('add.to.cart',$product->id) }}" class="btn-product btn-cart">
-                                    <span>add to cart</span>
-                                </a>
-                            </div>
                         </figure>
 
                         <div class="product-body">
