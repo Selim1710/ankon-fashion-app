@@ -117,7 +117,7 @@
                 <!-- add to cart -->
                 <div class="dropdown cart-dropdown">
                     @if(auth()->user())
-                    <a href="{{ route('user.profile',auth()->user()->id) }}" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                    <a href="{{ route('user.profile',auth()->user()->id) }}" class="dropdown-toggle">
                         <div class="icon">
                             <i class="icon-shopping-cart"></i>
                             <span class="cart-count">{{ session()->has('cart') ? count(session()->get('cart')) : 0 }}</span>
@@ -125,7 +125,7 @@
                         <p>Cart</p>
                     </a>
                     @else
-                    <a href="{{ route('user.login.form') }}" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                    <a href="{{ route('user.login.form') }}" class="dropdown-toggle">
                         <div class="icon">
                             <i class="icon-shopping-cart"></i>
                             <span class="cart-count"></span>

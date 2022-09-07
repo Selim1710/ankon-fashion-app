@@ -14,45 +14,53 @@
         <div class="page-content">
             <div class="container">
                 <table class="table table-wishlist table-mobile">
+                    <div class="d-flex justify-content-end"> <a href="#" class="btn btn-outline-success">Checkout all</a></div>
                     <thead>
                         <tr>
                             <th>Product</th>
-                            <th>Price</th>
-                            <th>Stock Status</th>
-                            <th></th>
-                            <th></th>
+                            <th>size</th>
+                            <th>price</th>
+                            <th>offer</th>
+                            <th>quantity</th>
+                            <th>amount</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($carts as $cart)
                         <tr>
                             <td class="product-col">
                                 <div class="product">
                                     <figure class="product-media">
                                         <a href="#">
-                                            <img src="assets/images/products/table/product-2.jpg" alt="Product image">
+                                            @foreach($cart['image'] as $image)
+                                            <img src="{{ ('/uploads/products/'.json_decode($image['images'])) }}" alt="Product image">
+                                            @endforeach
                                         </a>
                                     </figure>
 
                                     <h3 class="product-title">
-                                        <a href="#">Blue utility pinafore denim dress</a>
+                                        <a href="#">{{ $cart['name'] }}</a>
                                     </h3>
                                 </div>
                             </td>
-                            <td class="price-col">$76.00</td>
-                            <td class="stock-col"><span class="in-stock">In stock</span></td>
+                            <td class="price-col">{{ $cart['size'] }}</td>
+                            <td class="price-col">{{ $cart['old_price'] }}</td>
+                            <td class="price-col">{{ $cart['offer'] }}</td>
+                            <td class="price-col">{{ $cart['quantity'] }}</td>
+                            <td class="price-col"><span class="in-stock">{{ $cart['new_price'] *  $cart['quantity'] }}</span></td>
+
                             <td class="action-col">
-                                <button class="btn btn-block btn-outline-primary-2"><i class="icon-cart-plus"></i>Add to Cart</button>
+                                <button class="btn btn-outline-info"><i class="la la-check"></i></button>
                             </td>
                             <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
                         </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
-
+                <div class="w-100 d-flex align-items-center justify-content-center" style="font-size: 4.3rem;">
+                    <h5 class="p-4 border rounded">Total Price: 1000 tk </h5>
+                </div>
             </div>
         </div>
     </main>
-
-    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
-
     @endsection

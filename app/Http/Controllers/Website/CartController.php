@@ -22,6 +22,7 @@ class CartController extends Controller
             $newPrice = $product->new_price;
         }
         $productSize = $request->size;
+        // dd($productSize);
         $productQuantity = $request->quantity;
 
         if (!$product) {
@@ -66,6 +67,7 @@ class CartController extends Controller
     public function viewCart()
     {
         $carts = session()->get('cart');
+        // dd($carts);
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         return view('website.layouts.view_cart',compact('carts','categories','products'));
