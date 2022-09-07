@@ -71,7 +71,6 @@
                         }
                     }'>
             @foreach ($products as $product)
-
             <div class="product product-2">
                 <figure class="product-media">
                     <!-- image -->
@@ -84,21 +83,7 @@
                         @endforeach
                         @endif
                     </a>
-
-                    <div class="product-action-vertical">
-                        <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"></a>
-                    </div>
-
-                    <div class="product-action">
-                        <a href="{{ route('add.to.cart',$product->id) }}" class="btn-product btn-cart" title="Add to cart">
-                            <span>
-                                add to cart
-                            </span>
-                        </a>
-                        <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
-                    </div>
                 </figure>
-
                 <div class="product-body">
                     <div class="product-cat">
                         <a href="#">{{ $product->name }}</a>
@@ -117,12 +102,9 @@
                 </div>
             </div>
             @endforeach
-
         </div>
     </div>
-
     <div class="mb-6"></div>
-
     <div class="bg-light pt-5 pb-6">
         <div class="container trending-products">
             <div class="heading heading-flex mb-3">
@@ -130,7 +112,6 @@
                     <h2 class="title">Trending Products</h2>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-xl-5col d-none d-xl-block">
                     <div class="banner">
@@ -143,7 +124,6 @@
                         @endforeach
                     </div>
                 </div>
-
                 <div class="col-xl-4-5col">
                     <div class="owl-carousel owl-full carousel-equal-height carousel-with-shadow" data-toggle="owl" data-owl-options='{
                                     "nav": true, 
@@ -176,18 +156,9 @@
                                     <img src="{{ asset('/uploads/products/'.json_decode($image->images)) }}" alt="Product image" class="product-image">
                                     @endif
                                     @endforeach
-                                    @endif </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"></a>
-                                </div>
-
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
-                                    <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
-                                </div>
+                                    @endif
+                                </a>
                             </figure>
-
                             <div class="product-body">
                                 <div class="product-cat">
                                     <a href="#">{{ $product->name }}</a>
@@ -245,16 +216,8 @@
                                 <img src="{{ asset('/uploads/products/'.json_decode($image->images)) }}" alt="Product image" class="product-image">
                                 @endif
                                 @endforeach
-                                @endif </a>
-
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"></a>
-                            </div>
-
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
-                                <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
-                            </div>
+                                @endif
+                            </a>
                         </figure>
 
                         <div class="product-body">

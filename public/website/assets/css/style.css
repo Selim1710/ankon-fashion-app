@@ -16131,6 +16131,7 @@ button:focus {
 }
 
 .product-col .product {
+    width:250px;
     display: flex;
     align-items: center;
     margin: 0;

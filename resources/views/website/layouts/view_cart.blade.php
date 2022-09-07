@@ -11,10 +11,16 @@
                 </ol>
             </div>
         </nav>
+        @php
+        $total = 0;
+        @endphp
         <div class="page-content">
             <div class="container">
                 <table class="table table-wishlist table-mobile">
-                    <div class="d-flex justify-content-end"> <a href="#" class="btn btn-outline-success">Checkout all</a></div>
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-outline-danger">Clear</a>
+                        <a href="#" class="btn btn-outline-success">Checkout</a>
+                    </div>
                     <thead>
                         <tr>
                             <th>Product</th>
@@ -47,8 +53,10 @@
                             <td class="price-col">{{ $cart['old_price'] }}</td>
                             <td class="price-col">{{ $cart['offer'] }}</td>
                             <td class="price-col">{{ $cart['quantity'] }}</td>
-                            <td class="price-col"><span class="in-stock">{{ $cart['new_price'] *  $cart['quantity'] }}</span></td>
-
+                            <td class="price-col"><span class="in-stock">{{ $cart['new_price'] *  $cart['quantity'] }} ৳</span></td>
+                            @php
+                            $total += $cart['new_price'] *  $cart['quantity'];
+                            @endphp
                             <td class="action-col">
                                 <button class="btn btn-outline-info"><i class="la la-check"></i></button>
                             </td>
@@ -58,7 +66,7 @@
                     </tbody>
                 </table>
                 <div class="w-100 d-flex align-items-center justify-content-center" style="font-size: 4.3rem;">
-                    <h5 class="p-4 border rounded">Total Price: 1000 tk </h5>
+                    <h5 class="p-4 border rounded">Total Price: &nbsp; {{ $total }} ৳</h5>
                 </div>
             </div>
         </div>
