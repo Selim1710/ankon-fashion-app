@@ -39,9 +39,7 @@
                                 <div class="product">
                                     <figure class="product-media">
                                         <a href="#">
-                                            @foreach($cart['image'] as $image)
-                                            <img src="{{ ('/uploads/products/'.json_decode($image['images'])) }}" alt="Product image">
-                                            @endforeach
+                                            <img src="{{ ('/uploads/products/'.json_decode($cart['image'])) }}" alt="Product image">
                                         </a>
                                     </figure>
 
@@ -73,4 +71,5 @@
             </div>
         </div>
     </main>
-    @endsection
+</div>
+@endsection

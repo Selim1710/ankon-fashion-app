@@ -45,7 +45,7 @@
                         </a>
                     </div>
                     <div class="col-3 border text-center mt-4">
-                        <a href="#">
+                        <a href="{{ route('user.view.order.list',$user->id) }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
                             <i class="la la-list"></i>
                             </div>

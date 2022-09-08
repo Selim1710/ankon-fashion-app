@@ -58,7 +58,6 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/user/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
     Route::get('/user/edit/profile/{id}', [UserController::class, 'edit'])->name('user.edit.profile');
     Route::post('/user/update/profile/{id}', [UserController::class, 'updateProfile'])->name('user.update.profile');
-    Route::get('/user/view/order/list/{id}', [UserController::class, 'orderList'])->name('user.view.order.list');
 
     // product details
     Route::get('/product/details/{id}', [HomeController::class, 'productDetails'])->name('website.product.details');
@@ -70,6 +69,7 @@ Route::group(['prefix' => 'website'], function () {
         Route::get('/clear/cart', [CartController::class, 'clearCart'])->name('clear.cart');
         Route::get('/user/remove/cart/{id}', [CartController::class, 'remove'])->name('user.remove.cart');
         Route::get('/user/checkout', [CartController::class, 'checkout'])->name('user.checkout');
+        Route::get('/user/view/order/list/{id}', [CartController::class, 'orderList'])->name('user.view.order.list');
     });
 
     // footer

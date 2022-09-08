@@ -16,19 +16,19 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('customer_id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email');
-            $table->string('phone');
+            $table->string('phone')->nullable();
 
             $table->string('product_id');
             $table->string('product_name');
-            $table->string('model');
+            $table->string('image');
+            $table->string('size');
             $table->string('price');
-            $table->string('offer');
             $table->string('quantity');
             $table->string('total');
             $table->string('order_status')->default('pending');
-            $table->string('payment_status')->default('pending');
+            $table->string('payment_status')->default('Cash On Delivery');
 
             $table->timestamps();
         });

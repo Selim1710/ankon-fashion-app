@@ -80,7 +80,6 @@ class UserController extends Controller
     {
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
-
         $user = User::find($id);
         $orders = Order::where('customer_id', '=', $id)->get();
         $total_product = Order::where('customer_id', $id)->count();
@@ -102,11 +101,5 @@ class UserController extends Controller
             "phone" => $request->phone,
         ]);
         return redirect()->route('user.profile', $user->id)->with('message', 'Profile Updated');
-    }
-
-    public function orderList($id)
-    {
-        $orders = Order::where('customer_id','=',$id)->get();
-        return view('website.layouts.order_list',compact('orders'));
     }
 }

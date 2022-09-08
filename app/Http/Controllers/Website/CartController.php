@@ -16,7 +16,12 @@ class CartController extends Controller
         foreach ($products as $product) {
             $productId = $product->id;
             $productName = $product->name;
-            $productImage = $product->productImage;
+            // product image 
+            if($product->productImage){
+                foreach($product->productImage as $image){
+                    $productImage = $image->images;
+                }
+            }
             $oldPrice =  $product->old_price;
             $offer = $product->offer;
             $newPrice = $product->new_price;
@@ -65,6 +70,7 @@ class CartController extends Controller
     public function viewCart()
     {
         $carts = session()->get('cart');
+        // dd($carts);
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         return view('website.layouts.view_cart', compact('carts', 'categories', 'products'));
@@ -86,8 +92,8 @@ class CartController extends Controller
 
     public function checkout()
     {
-        dd('checkout');
         $carts = session()->get('cart');
+        // dd($carts);
         if ($carts) {
             foreach ($carts as $cart)
                 Order::create([
@@ -95,16 +101,27 @@ class CartController extends Controller
                     'name' => auth()->user()->name,
                     'email' => auth()->user()->email,
                     'phone' => auth()->user()->phone,
-                    'id' => $cart['id'],
-                    'name' => $cart['name'],
-                    'price' => $cart['price'],
-                    'offer' => $cart['offer'],
+
+                    'product_id' => $cart['id'],
+                    'product_name' => $cart['name'],
+                    'image' => json_encode($cart['image']),
+                    'size' => $cart['size'],
+                    'price' => $cart['new_price'],
                     'quantity' => $cart['quantity'],
-                    'total' => ($cart['price'] * $cart['quantity']) - ($cart['price'] * $cart['quantity'] * ($cart['offer'] / 100)),
+                    'total' => ($cart['new_price'] * $cart['quantity']),
                 ]);
             session()->forget('cart');
             return redirect()->back()->with('message', 'Order place successfully. Now Click -- PROCESS TO PAY -- to confirm order');
         }
         return redirect()->back()->with('error', 'No data found into the cart');
+    }
+
+    public function orderList($id)
+    {
+        $orders = Order::where('customer_id', '=', $id)->get();
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        // dd($orders);
+        return view('website.layouts.order_list', compact('orders', 'categories', 'products'));
     }
 }
