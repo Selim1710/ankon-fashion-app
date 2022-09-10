@@ -99,7 +99,7 @@
                 <!-- add to cart -->
                 <div class="dropdown cart-dropdown">
                     @if(auth()->user())
-                    <a href="{{ route('user.profile',auth()->user()->id) }}" class="dropdown-toggle">
+                    <a href="{{ route('user.view.cart') }}" class="dropdown-toggle">
                         <div class="icon">
                             <i class="icon-shopping-cart"></i>
                             <span class="cart-count">{{ session()->has('cart') ? count(session()->get('cart')) : 0 }}</span>

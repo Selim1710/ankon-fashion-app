@@ -18,9 +18,7 @@
                 <th>Phone</th>
                 <th>Product id</th>
                 <th>Name</th>
-                <th>Model</th>
                 <th>Price</th>
-                <th>Offer</th>
                 <th>Quantity</th>
                 <th>Total Price</th>
                 <th>Order Status</th>
@@ -37,9 +35,7 @@
                 <td>{{ $order->phone }}</td>
                 <td>{{ $order->product_id }}</td>
                 <td>{{ $order->product_name }}</td>
-                <td>{{ $order->model }}</td>
                 <td>{{ $order->price }}</td>
-                <td>{{ $order->offer }}</td>
                 <td>{{ $order->quantity }}</td>
                 <td>{{ $order->total }}</td>
                 <td>{{ $order->order_status }}</td>
