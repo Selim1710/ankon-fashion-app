@@ -142,7 +142,6 @@
                         </div>
                     </form>
                 </div>
-
                 <div class="product-details-tab">
                     <ul class="nav nav-pills justify-content-center" role="tablist">
                         <li class="nav-item">
@@ -168,7 +167,6 @@
                                 <p>{{ $product->description }}</p>
                             </div>
                         </div>
-
                         <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
                             <div class="product-desc-content">
                                 <h3>Delivery & returns</h3>
@@ -178,7 +176,9 @@
                         </div>
                         <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
                             <div class="reviews">
+                                <!-- review -->
                                 <h3>Reviews (2)</h3>
+                                <!-- loop start -->
                                 <div class="review">
                                     <div class="row no-gutters">
                                         <div class="col-auto">
@@ -204,31 +204,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="review">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <h4><a href="#">John Doe</a></h4>
-                                            <div class="ratings-container">
-                                                <div class="ratings">
-                                                    <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
-                                                </div>
-                                            </div>
-                                            <span class="review-date">5 days ago</span>
-                                        </div>
-                                        <div class="col">
-                                            <h4>Very good</h4>
-                                            <div class="review-content">
-                                                <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
-                                            </div>
-
-                                            <div class="review-action">
-                                                <a href="#"><i class="icon-thumbs-up"></i>Helpful (0)</a>
-                                                <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- loop end -->
                             </div>
                         </div>
                     </div>

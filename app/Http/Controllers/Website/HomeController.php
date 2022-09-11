@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Offer;
+use App\Models\Order;
 use App\Models\ProductImage;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
@@ -71,7 +72,7 @@ class HomeController extends Controller
     {
         $categories = Category::with('subCategories')->get();
         $products = Product::where('new_price', '<', '1000')->orderBy('id', 'DESC')->paginate(16);
-        return view('website.layouts.all_product', compact('products','categories'));
+        return view('website.layouts.all_product', compact('products', 'categories'));
     }
 
     public function midPrice()
@@ -80,13 +81,13 @@ class HomeController extends Controller
         $max = 2000;
         $min = 1000;
         $products = Product::whereBetween('new_price', [$min, $max])->orderBy('id', 'DESC')->paginate(16);
-        return view('website.layouts.all_product', compact('products','categories'));
+        return view('website.layouts.all_product', compact('products', 'categories'));
     }
     public function highPrice()
     {
         $categories = Category::with('subCategories')->get();
         $products = Product::where('new_price', '>', '2001')->orderBy('id', 'DESC')->paginate(16);
-        return view('website.layouts.all_product', compact('products','categories'));
+        return view('website.layouts.all_product', compact('products', 'categories'));
     }
 
     ////////////////////////// prodcut filtering ////////////////////////// 
@@ -143,6 +144,19 @@ class HomeController extends Controller
         $productImages = ProductImage::where('product_id', $id)->get();
         $subCatProduct = Product::with('productImage')->where('subCategory_id', $product->subCategory_id)->get();
         return view('website.layouts.product_details', compact('categories', 'productImages', 'products', 'product', 'subCatProduct'));
+    }
+
+    ////////////////////////// Review //////////////////////////
+    public function review($id)
+    {
+        $review = Order::find($id);
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        return view('website.layouts.review', compact('review','categories','products'));
+    }
+    public function submitReview(Request $request, $id)
+    {
+        dd($request->all());
     }
 
     public function refundPolicy()

@@ -173,12 +173,6 @@
                                     </div>
                                     <span class="ratings-text">( 4 Reviews )</span>
                                 </div>
-
-                                <div class="product-nav product-nav-dots">
-                                    <a href="#" style="background: #69b4ff;"><span class="sr-only">Color name</span></a>
-                                    <a href="#" style="background: #ff887f;"><span class="sr-only">Color name</span></a>
-                                    <a href="#" class="active" style="background: #333333;"><span class="sr-only">Color name</span></a>
-                                </div>
                             </div>
                         </div>
                         @endforeach
@@ -233,12 +227,6 @@
                                     <div class="ratings-val" style="width: 100%;"></div>
                                 </div>
                                 <span class="ratings-text">( 4 Reviews )</span>
-                            </div>
-
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" style="background: #69b4ff;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #ff887f;"><span class="sr-only">Color name</span></a>
-                                <a href="#" class="active" style="background: #333333;"><span class="sr-only">Color name</span></a>
                             </div>
                         </div>
                     </div>

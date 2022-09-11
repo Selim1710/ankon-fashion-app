@@ -64,6 +64,16 @@
                             </div>
                         </a>
                     </div>
+                    <div class="col-3 border text-center mt-4">
+                        <a href="{{ route('user.logout') }}">
+                            <div class="card-header mt-1" style="font-size: 2.3rem;">
+                            <i class="la la-sign-out"></i>
+                            </div>
+                            <div class="card-body mt-1">
+                                <h5>Logout</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

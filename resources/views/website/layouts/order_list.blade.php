@@ -5,7 +5,7 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Profile</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Order-List</li>
                 </ol>
@@ -47,6 +47,10 @@
                             <td class="price-col">{{ $order['price'] }}</td>
                             <td class="price-col">{{ $order['quantity'] }}</td>
                             <td class="price-col"><span class="in-stock">{{ $order['total'] }} ৳</span></td>
+                            <td class="price-col"><a href="{{ route('user.add.review',$order->id) }}" class="btn btn-primary">Write a review</a></td>
+                            <!-- @if($order['order_status']=='delivered') -->
+
+                            <!-- @endif -->
                             @php
                             $total += $order['new_price'] * $order['quantity'];
                             @endphp

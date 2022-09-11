@@ -62,6 +62,10 @@ Route::group(['prefix' => 'website'], function () {
     // product details
     Route::get('/product/details/{id}', [HomeController::class, 'productDetails'])->name('website.product.details');
 
+    // review
+    Route::get('/add/review/{id}', [HomeController::class, 'review'])->name('user.add.review');
+    Route::post('/user/submit/review/{id}', [HomeController::class, 'submitReview'])->name('user.sumbit.review');
+
     Route::group(['middleware' => 'check_customer'], function () {
         // add to cart
         Route::post('/add/to/cart/{id}', [CartController::class, 'cart'])->name('add.to.cart');

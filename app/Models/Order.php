@@ -10,4 +10,8 @@ class Order extends Model
 {
     use HasFactory,Notifiable;
     protected $guarded=[];
+
+    public function review(){
+        return $this->hasMany(Review::class);
+    }
 }

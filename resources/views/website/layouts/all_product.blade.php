@@ -22,8 +22,8 @@
                                     Price
                                 </button>
                                 <div class="dropdown-menu text-capitalize" style="font-size: 1.3rem;" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('website.all.product') }}">all</a>    
-                                <a class="dropdown-item" href="{{ route('website.shorting.low.price') }}">low(1k)</a>
+                                    <a class="dropdown-item" href="{{ route('website.all.product') }}">all</a>
+                                    <a class="dropdown-item" href="{{ route('website.shorting.low.price') }}">low(1k)</a>
                                     <a class="dropdown-item" href="{{ route('website.shorting.mid.price') }}">mid(2k)</a>
                                     <a class="dropdown-item" href="{{ route('website.shorting.high.price') }}">high(2k up)</a>
                                 </div>
@@ -45,7 +45,6 @@
                                                 @endif
                                             </a>
                                         </figure>
-
                                         <div class="product-body">
                                             <div class="product-cat">
                                                 <a href="#">{{ $product->name }}</a>
@@ -64,7 +63,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-
                             </div>
                         </div>
                     </div>
@@ -73,7 +71,6 @@
                             <div class="widget widget-clean">
                                 <label>Filters:</label>
                             </div>
-
                             <div class="widget widget-collapsible">
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
@@ -83,7 +80,6 @@
                                 <div class="collapse show" id="widget-1">
                                     <div class="widget-body">
                                         <div class="filter-items filter-items-count">
-
                                             <!-- foreach loop start -->
                                             <div class="filter-item">
                                                 <div class="custom-control custom-checkbox">
@@ -93,7 +89,6 @@
                                                 <span class="item-count">3</span>
                                             </div>
                                             <!-- foreach loop end -->
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -115,11 +110,10 @@
                                                     <label class="custom-control-label" for="size-1">XS</label>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-                            </div>                 
+                            </div>
                         </div>
                     </aside>
                 </div>
