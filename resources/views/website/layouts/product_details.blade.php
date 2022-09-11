@@ -155,9 +155,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            @if($reviews)
                             <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">
-                                Reviews (2)
+                                Reviews ({{ count($reviews) }})
                             </a>
+                            @else <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">
+                                Reviews (0)
+                            </a>
+                            @endif
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -177,21 +182,23 @@
                         <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
                             <div class="reviews">
                                 <!-- review -->
-                                <h3>Reviews (2)</h3>
+                                @if($reviews)
+                                <h3>Reviews ({{ count($reviews) }})</h3>
                                 <!-- loop start -->
+                                @foreach ($reviews as $review)
                                 <div class="review">
                                     <div class="row no-gutters">
                                         <div class="col-auto">
-                                            <h4><a href="#">Samanta J.</a></h4>
+                                            <h4><a href="#">{{ $review->customer_name }}</a></h4>
                                             <div class="ratings-container">
                                                 <div class="ratings">
                                                     <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
                                                 </div>
                                             </div>
-                                            <span class="review-date">6 days ago</span>
+                                            <span class="review-date">{{ $review->created_at }}</span>
                                         </div>
                                         <div class="col">
-                                            <h4>Good, perfect size</h4>
+                                            <h4>{{ $review->comment }}</h4>
 
                                             <div class="review-content">
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
@@ -204,6 +211,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
+                                @else
+                                <h3>Reviews (0)</h3>
+                                <p class="text-danger">No reviews yet</p>
+                                @endif
                                 <!-- loop end -->
                             </div>
                         </div>

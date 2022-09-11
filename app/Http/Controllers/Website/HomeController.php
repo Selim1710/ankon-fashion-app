@@ -144,7 +144,9 @@ class HomeController extends Controller
         $product = Product::find($id);
         $productImages = ProductImage::where('product_id', $id)->get();
         $subCatProduct = Product::with('productImage')->where('subCategory_id', $product->subCategory_id)->get();
-        return view('website.layouts.product_details', compact('categories', 'productImages', 'products', 'product', 'subCatProduct'));
+        $reviews = Review::where('product_id',$id)->get();
+        // dd($reviews);
+        return view('website.layouts.product_details', compact('categories', 'productImages', 'products', 'product', 'subCatProduct','reviews'));
     }
 
     ////////////////////////// Review //////////////////////////
@@ -159,12 +161,10 @@ class HomeController extends Controller
     public function submitReview(Request $request, $id)
     {
         $review = Order::find($id);
-        // dd( $id);
-        // dd( $review);
-        // dd($request->all());
         Review::create([
             'order_id'=>$review->id,
             'product_id'=>$review->product_id,
+            'customer_name'=>$review->name,
             'comment'=>$request->comment,
         ]);
         return redirect()->back()->with('message','Thank you for your comment 🙂');
