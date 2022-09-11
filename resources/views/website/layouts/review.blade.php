@@ -9,7 +9,7 @@
                         <ul class="nav nav-pills nav-fill" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="signin-tab-2" data-toggle="tab" href="#signin-2" role="tab" aria-controls="signin-2" aria-selected="false">
-                                    Add Review From Here
+                                    Give Your valuable feedback
                                 </a>
                             </li>
                         </ul>
@@ -20,13 +20,13 @@
                                     @csrf
                                     <div class="form-group">
                                         <label>write a review</label>
-                                        <textarea name="" id="" cols="30" rows="10" class="form-control" required></textarea>
+                                        <textarea name="comment" cols="30" rows="10" class="form-control" required></textarea>
                                     </div>
 
                                     <div class="form-footer">
-                                        <button type="submit" class="btn btn-outline-primary-2">
-                                            <span>Submit</span>
-                                            <i class="icon-long-arrow-right"></i>
+                                        <button type="submit" class="btn btn-outline-primary-2 w-100">
+                                            <span>Sent</span>
+                                            <i class="la la-paper-plane"></i>
                                         </button>
                                     </div>
                                 </form>

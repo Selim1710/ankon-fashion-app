@@ -47,10 +47,15 @@
                             <td class="price-col">{{ $order['price'] }}</td>
                             <td class="price-col">{{ $order['quantity'] }}</td>
                             <td class="price-col"><span class="in-stock">{{ $order['total'] }} ৳</span></td>
-                            <td class="price-col"><a href="{{ route('user.add.review',$order->id) }}" class="btn btn-primary">Write a review</a></td>
                             <!-- @if($order['order_status']=='delivered') -->
 
                             <!-- @endif -->
+                            <td class="price-col">
+                                <a href="{{ route('user.add.review',$order['id']) }}" class="btn btn-primary">
+                                    Write a review
+                                </a>
+                            </td>
+
                             @php
                             $total += $order['new_price'] * $order['quantity'];
                             @endphp

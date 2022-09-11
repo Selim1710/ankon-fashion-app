@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Offer;
 use App\Models\Order;
 use App\Models\ProductImage;
+use App\Models\Review;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
@@ -150,13 +151,23 @@ class HomeController extends Controller
     public function review($id)
     {
         $review = Order::find($id);
+        // dd($id);
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         return view('website.layouts.review', compact('review','categories','products'));
     }
     public function submitReview(Request $request, $id)
     {
-        dd($request->all());
+        $review = Order::find($id);
+        // dd( $id);
+        // dd( $review);
+        // dd($request->all());
+        Review::create([
+            'order_id'=>$review->id,
+            'product_id'=>$review->product_id,
+            'comment'=>$request->comment,
+        ]);
+        return redirect()->back()->with('message','Thank you for your comment 🙂');
     }
 
     public function refundPolicy()
