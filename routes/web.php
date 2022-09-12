@@ -152,5 +152,9 @@ Route::group(['prefix' => 'admin'], function () {
 
         // supplier
         Route::get('/manage/supplier', [SupplierController::class, 'manageSupplier'])->name('admin.manage.supplier');
+        Route::get('/add/supplier', [SupplierController::class, 'add'])->name('admin.add.supplier');
+        Route::get('/store/supplier', [SupplierController::class, 'store'])->name('admin.store.supplier');
+        Route::get('/edit/supplier', [SupplierController::class, 'edit'])->name('admin.edit.supplier');
+        Route::get('/delete/supplier', [SupplierController::class, 'delete'])->name('admin.delete.supplier');
     });
 });

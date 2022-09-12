@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -10,67 +11,60 @@ class SupplierController extends Controller
  
     public function manageSupplier()
     {
-        return view('admin.layouts.supplier.supplier_table');
+        $suppliers = User::all();
+        return view('admin.layouts.supplier.supplier_table',compact('suppliers'));
 
     }
 
-
-    public function create()
+    public function add()
     {
-        //
+        return view('admin.layouts.supplier.add_supplier');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users|max:20',
+            'phone' => 'required',
+            'password' => 'required',
+            'address' => 'required',
+            'role' => 'required',
+        ]);
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => $request->password,
+            'address' => $request->address,
+            'role' => $request->role,
+        ]);
+        return redirect()->route('admin.manage.supplier')->with('message', 'Supplier added successfully');
+    }
+
+    public function edit($id)
+    {
+        $supplier = User::find($id);
+        return view('admin.layouts.supplier.edit_supplier', compact('supplier'));
+    }
+
+    public function delete($id)
+    {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
