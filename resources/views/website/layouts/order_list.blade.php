@@ -47,19 +47,17 @@
                             <td class="price-col">{{ $order['price'] }}</td>
                             <td class="price-col">{{ $order['quantity'] }}</td>
                             <td class="price-col"><span class="in-stock">{{ $order['total'] }} ৳</span></td>
-                            <!-- @if($order['order_status']=='delivered') -->
-
-                            <!-- @endif -->
+                            @if($order['order_status']=='delivered')
                             <td class="price-col">
                                 <a href="{{ route('user.add.review',$order['id']) }}" class="btn btn-primary">
                                     Write a review
                                 </a>
                             </td>
-
+                            @endif
                             @php
                             $total += $order['new_price'] * $order['quantity'];
                             @endphp
-                            <td class="remove-col"><a href="#" class="btn-remove"><i class="icon-close"></i></a></td>
+                            <td class="remove-col"><a href="{{ route('user.cancel.order',$order['id']) }}" class="btn-remove"><i class="icon-close"></i></a></td>
                         </tr>
                         @endforeach
                     </tbody>

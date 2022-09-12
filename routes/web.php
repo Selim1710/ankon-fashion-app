@@ -66,6 +66,9 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/add/review/{id}', [HomeController::class, 'review'])->name('user.add.review');
     Route::post('/user/submit/review/{id}', [HomeController::class, 'submitReview'])->name('user.sumbit.review');
 
+    // cancel order
+    Route::get('/user/cancel/order/{id}', [HomeController::class, 'cancelOrder'])->name('user.cancel.order');
+
     Route::group(['middleware' => 'check_customer'], function () {
         // add to cart
         Route::post('/add/to/cart/{id}', [CartController::class, 'cart'])->name('add.to.cart');

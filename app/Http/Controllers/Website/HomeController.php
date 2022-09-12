@@ -170,6 +170,15 @@ class HomeController extends Controller
         return redirect()->back()->with('message','Thank you for your comment 🙂');
     }
 
+     ////////////////////////// cancel Order //////////////////////////
+     public function cancelOrder($id)
+     {
+         $order = Order::find($id);
+         $order->delete();
+         return redirect()->back()->with('error','order cancelled');
+         
+     }
+
     public function refundPolicy()
     {
         return view('website.layouts.refund_policy');

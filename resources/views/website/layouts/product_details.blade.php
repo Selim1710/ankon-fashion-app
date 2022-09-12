@@ -116,8 +116,7 @@
                                         </button>
 
                                         <div class="details-action-wrapper">
-                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
-                                            <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a>
+                                            <a href="#" class="btn btn-success rounded" >Buy Now</a>
                                         </div>
                                     </div>
 
@@ -200,13 +199,13 @@
                                         <div class="col">
                                             <h4>{{ $review->comment }}</h4>
 
-                                            <div class="review-content">
+                                            <!-- <div class="review-content">
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
-                                            </div>
+                                            </div> -->
 
                                             <div class="review-action">
-                                                <a href="#"><i class="icon-thumbs-up"></i>Helpful (2)</a>
-                                                <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
+                                                <a href="#"><i class="icon-thumbs-up"></i>Helpful ()</a>
+                                                <a href="#"><i class="icon-thumbs-down"></i>Unhelpful ()</a>
                                             </div>
                                         </div>
                                     </div>
