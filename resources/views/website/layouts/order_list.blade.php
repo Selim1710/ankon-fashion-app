@@ -53,11 +53,12 @@
                                     Write a review
                                 </a>
                             </td>
+                            @else
+                            <td class="remove-col"><a href="{{ route('user.cancel.order',$order['id']) }}" class="btn-remove"><i class="icon-close"></i></a></td>
                             @endif
                             @php
-                            $total += $order['new_price'] * $order['quantity'];
+                            $total += $order['price'] * $order['quantity'];
                             @endphp
-                            <td class="remove-col"><a href="{{ route('user.cancel.order',$order['id']) }}" class="btn-remove"><i class="icon-close"></i></a></td>
                         </tr>
                         @endforeach
                     </tbody>

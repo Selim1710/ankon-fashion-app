@@ -15,6 +15,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
+                        <!-- price shorting -->
                         <div class="d-flex justify-content-end">
                             <p>Shorted by:</p>
                             <div class="dropdown">
@@ -29,8 +30,10 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- products -->
                         <div class="products mb-3">
                             <div class="row justify-content-center">
+                                @if($products)
                                 @foreach ($products as $product)
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-7 text-center">
@@ -63,57 +66,83 @@
                                     </div>
                                 </div>
                                 @endforeach
+                                @else
+                                <h4 class="text-danger">No Product Found</h4>
+                                @endif
                             </div>
                         </div>
                     </div>
+                    <!-- filtering items -->
                     <aside class="col-lg-3 order-lg-first">
                         <div class="sidebar sidebar-shop">
                             <div class="widget widget-clean">
                                 <label>Filters:</label>
                             </div>
-                            <div class="widget widget-collapsible">
-                                <h3 class="widget-title">
-                                    <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
-                                        Category
-                                    </a>
-                                </h3>
-                                <div class="collapse show" id="widget-1">
-                                    <div class="widget-body">
-                                        <div class="filter-items filter-items-count">
-                                            <!-- foreach loop start -->
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="cat-1">
-                                                    <label class="custom-control-label" for="cat-1">Dresses</label>
+                            <form action="" method="">
+                                <!-- sub-category -->
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">
+                                        <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
+                                            Category
+                                        </a>
+                                    </h3>
+                                    <div class="collapse show" id="widget-1">
+                                        <div class="widget-body">
+                                            <div class="filter-items filter-items-count">
+                                                @foreach ( $subCategories  as $subCategiry) 
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="{{ $subCategiry }}" value="{{ $subCategiry }}" class="custom-control-input" id="{{ $subCategiry }}">
+                                                        <label class="custom-control-label" for="{{ $subCategiry }}">{{ $subCategiry }}</label>
+                                                    </div>
                                                 </div>
-                                                <span class="item-count">3</span>
-                                            </div>
-                                            <!-- foreach loop end -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- size -->
-                            <div class="widget widget-collapsible">
-                                <h3 class="widget-title">
-                                    <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true" aria-controls="widget-2">
-                                        Size
-                                    </a>
-                                </h3>
-                                <div class="collapse show" id="widget-2">
-                                    <div class="widget-body">
-                                        <div class="filter-items">
-
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="size-1">
-                                                    <label class="custom-control-label" for="size-1">XS</label>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <!-- size -->
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">
+                                        <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true" aria-controls="widget-2">
+                                            Size
+                                        </a>
+                                    </h3>
+                                    <div class="collapse show" id="widget-2">
+                                        <div class="widget-body">
+                                            <div class="filter-items">
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="one-size" value="one-size" id="one-size" class="custom-control-input">
+                                                        <label class="custom-control-label" for="one-size">one-size</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="s" value="s" id="s" class="custom-control-input">
+                                                        <label class="custom-control-label" for="s">s</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="m" value="m" id="m" class="custom-control-input">
+                                                        <label class="custom-control-label" for="m">m</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="l" value="l" id="l" class="custom-control-input">
+                                                        <label class="custom-control-label" for="l">l</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="xl" value="xl" id="xl" class="custom-control-input">
+                                                        <label class="custom-control-label" for="xl">xl</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="xxl" value="xxl" id="xxl" class="custom-control-input">
+                                                        <label class="custom-control-label" for="xxl">xxl</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn text-white w-100 rounded" style="background: black;">Filter Result</button>
+                            </form>
                         </div>
                     </aside>
                 </div>

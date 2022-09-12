@@ -62,11 +62,23 @@ class HomeController extends Controller
     }
 
     ////////////////////////// price shorting ////////////////////////// 
-    public function allProduct()
+    public function allProduct(Request $request)
     {
-        $categories = Category::with('subCategories')->get();
-        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(16);
-        return view('website.layouts.all_product', compact('products', 'categories'));
+        $array = $request->all();
+        // dd($array);
+        $filter = $array ?? "";
+        if ($filter) {
+            $categories = Category::with('subCategories')->get();
+            $products = Product::whereIn('size', $filter)
+                ->orWhereIn('name', $filter)
+                ->get();
+            $subCategories = Subcategory::pluck('sub_category_name');
+        } else {
+            $categories = Category::with('subCategories')->get();
+            $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(16);
+            $subCategories = Subcategory::with('product')->pluck('sub_category_name');
+        }
+        return view('website.layouts.all_product', compact('products', 'categories', 'subCategories'));
     }
 
     public function lowPrice()
@@ -91,41 +103,6 @@ class HomeController extends Controller
         return view('website.layouts.all_product', compact('products', 'categories'));
     }
 
-    ////////////////////////// prodcut filtering ////////////////////////// 
-    public function filterAllProduct(Request $request)
-    {
-        $array = $request->all();
-        $filter = $array ?? "";
-        if ($filter) {
-            $products = Product::whereIn('processor', $filter)
-                ->orwhereIn('display', $filter)
-                ->orwhereIn('memory', $filter)
-                ->orwhereIn('graphics', $filter)
-                ->orwhereIn('operating_system', $filter)
-                ->orwhereIn('battery', $filter)
-                ->get();
-
-            $result = $products->count();
-
-            $processor = Product::pluck('processor')->unique();
-            $display = Product::pluck('display')->unique();
-            $memory = Product::pluck('memory')->unique();
-            $graphics = Product::pluck('graphics')->unique();
-            $operating = Product::pluck('operating_system')->unique();
-            $battery = Product::pluck('battery')->unique();
-        } else {
-            $products = Product::with('subCategory')->orderBy('id', 'DESC')->paginate(16);
-            $processor = Product::pluck('processor')->unique();
-            $display = Product::pluck('display')->unique();
-            $memory = Product::pluck('memory')->unique();
-            $graphics = Product::pluck('graphics')->unique();
-            $operating = Product::pluck('operating_system')->unique();
-            $battery = Product::pluck('battery')->unique();
-        }
-        return view('website.layouts.all_product_filter', compact('products', 'result'));
-    }
-
-    ////////////////////////// The end ////////////////////////// 
     public function offers()
     {
         $offers = Offer::all()->sortByDesc('id')->values();
@@ -144,9 +121,9 @@ class HomeController extends Controller
         $product = Product::find($id);
         $productImages = ProductImage::where('product_id', $id)->get();
         $subCatProduct = Product::with('productImage')->where('subCategory_id', $product->subCategory_id)->get();
-        $reviews = Review::where('product_id',$id)->get();
+        $reviews = Review::where('product_id', $id)->get();
         // dd($reviews);
-        return view('website.layouts.product_details', compact('categories', 'productImages', 'products', 'product', 'subCatProduct','reviews'));
+        return view('website.layouts.product_details', compact('categories', 'productImages', 'products', 'product', 'subCatProduct', 'reviews'));
     }
 
     ////////////////////////// Review //////////////////////////
@@ -156,28 +133,27 @@ class HomeController extends Controller
         // dd($id);
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
-        return view('website.layouts.review', compact('review','categories','products'));
+        return view('website.layouts.review', compact('review', 'categories', 'products'));
     }
     public function submitReview(Request $request, $id)
     {
         $review = Order::find($id);
         Review::create([
-            'order_id'=>$review->id,
-            'product_id'=>$review->product_id,
-            'customer_name'=>$review->name,
-            'comment'=>$request->comment,
+            'order_id' => $review->id,
+            'product_id' => $review->product_id,
+            'customer_name' => $review->name,
+            'comment' => $request->comment,
         ]);
-        return redirect()->back()->with('message','Thank you for your comment 🙂');
+        return redirect()->back()->with('message', 'Thank you for your comment 🙂');
     }
 
-     ////////////////////////// cancel Order //////////////////////////
-     public function cancelOrder($id)
-     {
-         $order = Order::find($id);
-         $order->delete();
-         return redirect()->back()->with('error','order cancelled');
-         
-     }
+    ////////////////////////// cancel Order //////////////////////////
+    public function cancelOrder($id)
+    {
+        $order = Order::find($id);
+        $order->delete();
+        return redirect()->back()->with('error', 'order cancelled');
+    }
 
     public function refundPolicy()
     {
