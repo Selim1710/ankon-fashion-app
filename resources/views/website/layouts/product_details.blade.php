@@ -1,7 +1,5 @@
 @extends('website.master')
-
 @section('contents')
-
 <div class="page-wrapper">
     <main class="main">
         <!-- breadcrumb -->
@@ -283,6 +281,5 @@
         </div>
     </main>
 </div>
-
 <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 @endsection

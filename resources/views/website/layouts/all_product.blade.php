@@ -17,7 +17,7 @@
                     <div class="col-lg-9">
                         <!-- price shorting -->
                         <div class="d-flex justify-content-end">
-                            <p>Shorted by:</p>
+                            <p>Shorted by:</p><br><br>
                             <div class="dropdown">
                                 <button class="border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                                     Price
@@ -78,29 +78,7 @@
                             <div class="widget widget-clean">
                                 <label>Filters:</label>
                             </div>
-                            <form action="" method="">
-                                <!-- sub-category -->
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
-                                            Category
-                                        </a>
-                                    </h3>
-                                    <div class="collapse show" id="widget-1">
-                                        <div class="widget-body">
-                                            <div class="filter-items filter-items-count">
-                                                @foreach ( $subCategories  as $subCategiry) 
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" name="{{ $subCategiry }}" value="{{ $subCategiry }}" class="custom-control-input" id="{{ $subCategiry }}">
-                                                        <label class="custom-control-label" for="{{ $subCategiry }}">{{ $subCategiry }}</label>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <form action="">  
                                 <!-- size -->
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
@@ -113,35 +91,35 @@
                                             <div class="filter-items">
                                                 <div class="filter-item">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" name="one-size" value="one-size" id="one-size" class="custom-control-input">
+                                                        <input type="checkbox" name="size[]" value="one-size" id="one-size" class="custom-control-input">
                                                         <label class="custom-control-label" for="one-size">one-size</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" name="s" value="s" id="s" class="custom-control-input">
+                                                        <input type="checkbox" name="size[]" value="s" id="s" class="custom-control-input">
                                                         <label class="custom-control-label" for="s">s</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" name="m" value="m" id="m" class="custom-control-input">
+                                                        <input type="checkbox" name="size[]" value="m" id="m" class="custom-control-input">
                                                         <label class="custom-control-label" for="m">m</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" name="l" value="l" id="l" class="custom-control-input">
+                                                        <input type="checkbox" name="size[]" value="l" id="l" class="custom-control-input">
                                                         <label class="custom-control-label" for="l">l</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" name="xl" value="xl" id="xl" class="custom-control-input">
+                                                        <input type="checkbox" name="size[]" value="xl" id="xl" class="custom-control-input">
                                                         <label class="custom-control-label" for="xl">xl</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" name="xxl" value="xxl" id="xxl" class="custom-control-input">
+                                                        <input type="checkbox" name="size[]" value="xxl" id="xxl" class="custom-control-input">
                                                         <label class="custom-control-label" for="xxl">xxl</label>
-                                                    </div>
+                                                    </div> <br>
+                                                    <button type="submit" class="btn btn-outline-info w-100 rounded">Filter Result &rarr;</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn text-white w-100 rounded" style="background: black;">Filter Result</button>
                             </form>
                         </div>
                     </aside>

@@ -65,13 +65,10 @@ class HomeController extends Controller
     public function allProduct(Request $request)
     {
         $array = $request->all();
-        // dd($array);
         $filter = $array ?? "";
         if ($filter) {
             $categories = Category::with('subCategories')->get();
-            $products = Product::whereIn('size', $filter)
-                ->orWhereIn('name', $filter)
-                ->get();
+            $products = Product::whereIn('size', [json_encode($filter['size'])])->get();
             $subCategories = Subcategory::pluck('sub_category_name');
         } else {
             $categories = Category::with('subCategories')->get();
@@ -83,24 +80,27 @@ class HomeController extends Controller
 
     public function lowPrice()
     {
+        $subCategories = Subcategory::with('product')->pluck('sub_category_name');
         $categories = Category::with('subCategories')->get();
         $products = Product::where('new_price', '<', '1000')->orderBy('id', 'DESC')->paginate(16);
-        return view('website.layouts.all_product', compact('products', 'categories'));
+        return view('website.layouts.all_product', compact('products', 'categories', 'subCategories'));
     }
 
     public function midPrice()
     {
+        $subCategories = Subcategory::with('product')->pluck('sub_category_name');
         $categories = Category::with('subCategories')->get();
         $max = 2000;
         $min = 1000;
         $products = Product::whereBetween('new_price', [$min, $max])->orderBy('id', 'DESC')->paginate(16);
-        return view('website.layouts.all_product', compact('products', 'categories'));
+        return view('website.layouts.all_product', compact('products', 'categories', 'subCategories'));
     }
     public function highPrice()
     {
+        $subCategories = Subcategory::with('product')->pluck('sub_category_name');
         $categories = Category::with('subCategories')->get();
         $products = Product::where('new_price', '>', '2001')->orderBy('id', 'DESC')->paginate(16);
-        return view('website.layouts.all_product', compact('products', 'categories'));
+        return view('website.layouts.all_product', compact('products', 'categories', 'subCategories'));
     }
 
     public function offers()
