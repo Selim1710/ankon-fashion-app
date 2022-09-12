@@ -20,13 +20,7 @@
 <body class="sb-nav-fixed">
 
     @include('admin.partials.header')
-    <!-- message -->
-    @if(session()->has('message'))
-    <p class="alert alert-success">{{ session()->get('message') }}</p>
-    @elseif(session()->has('error'))
-    <p class="alert alert-danger">{{ session()->get('error') }}</p>
-    @endif
-    <!-- end -->
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -66,6 +60,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Report
                         </a>
+                        <a class="nav-link" href="{{ route('admin.manage.supplier') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Manage Supplier
+                        </a>
                         <!-- website footer -->
                         <div class="sb-sidenav-menu-heading">footer</div>
                         <a class="nav-link" href="#">
@@ -85,6 +83,13 @@
             </nav>
         </div>
         <div id="layoutSidenav_content">
+            <!-- message -->
+            @if(session()->has('message'))
+            <p class="alert alert-success text-center mt-4">{{ session()->get('message') }}</p>
+            @elseif(session()->has('error'))
+            <p class="alert alert-danger text-center mt-4">{{ session()->get('error') }}</p>
+            @endif
+            <!-- end -->
             @yield('contents')
             @include('admin.partials.footer')
         </div>

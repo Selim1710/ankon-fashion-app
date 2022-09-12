@@ -1,13 +1,5 @@
 @extends('admin.master')
 @section('contents')
-<!-- Message -->
-@if(session()->has('error'))
-<p class="alert alert-danger">{{ session()->get('error') }}</p>
-@endif
-@if(session()->has('message'))
-<p class="alert alert-success">{{ session()->get('message') }}</p>
-@endif
-<!-- end -->
 <div class="manage_table">
     <table class="table table-borderless table-hover">
         <thead class="table-primary text-capitalize">

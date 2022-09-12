@@ -1,13 +1,5 @@
 @extends('admin.master')
 @section('contents')
-<!-- Added, Edit, Delete Message -->
-@if(session()->has('error'))
-<p class="alert alert-danger">{{ session()->get('error') }}</p>
-@endif
-@if(session()->has('message'))
-<p class="alert alert-success">{{ session()->get('message') }}</p>
-@endif
-<!-- end -->
 <div class="table_button">
     <a href="{{ route('admin.add.subCategory') }}" class="btn btn-primary">Add Sub-Category</a>
 </div>
@@ -33,7 +25,6 @@
                 </td>
             </tr>
             @endforeach
-
         </tbody>
     </table>
 </div>

@@ -4,14 +4,6 @@
 <div class="table_button text-center">
     <h1>Customer List</h1>
 </div>
-<!-- Message -->
-@if(session()->has('error'))
-<p class="alert alert-danger">{{ session()->get('error') }}</p>
-@endif
-@if(session()->has('message'))
-<p class="alert alert-success">{{ session()->get('message') }}</p>
-@endif
-<!-- end -->
 <div class="manage_table">
     <table class="table table-borderless table-hover" id="customer_table">
         <thead class="table-primary">

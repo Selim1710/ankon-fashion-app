@@ -4,13 +4,12 @@ use App\Http\Controllers\Backend\AdminLoginController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashBoardController;
-use App\Http\Controllers\Backend\LaptopDealsController;
 use App\Http\Controllers\Backend\ProductController;
-use App\Http\Controllers\Backend\StockController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ManageOrderController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\OfferController;
+use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\UserController;
@@ -150,5 +149,8 @@ Route::group(['prefix' => 'admin'], function () {
         // Company Report
         Route::get('/view/report', [ReportController::class, 'viewReport'])->name('admin.view.report');
         Route::post('/search/report', [ReportController::class, 'searchReport'])->name('admin.search.report');
+
+        // supplier
+        Route::get('/manage/supplier', [SupplierController::class, 'manageSupplier'])->name('admin.manage.supplier');
     });
 });

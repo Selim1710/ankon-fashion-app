@@ -1,15 +1,5 @@
 @extends('admin.master')
 @section('contents')
-<!-- Message -->
-@if(session()->has('error'))
-<p class="alert alert-danger">{{ session()->get('error') }}</p>
-@endif
-@if(session()->has('message'))
-<p class="alert alert-success">{{ session()->get('message') }}</p>
-@endif
-<!-- end -->
-
-
 <div class="table_button">
     <a href="{{ route('admin.add.category') }}" class="btn btn-primary">Add Category</a>
 </div>
