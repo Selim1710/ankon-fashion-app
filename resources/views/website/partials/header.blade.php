@@ -98,7 +98,15 @@
                 </div>
                 <!-- add to cart -->
                 <div class="dropdown cart-dropdown">
-                    @if(auth()->user()->role == "supplier")
+                    @if(!auth()->user())
+                    <a href="#" class="dropdown-toggle">
+                        <div class="icon">
+                            <i class="icon-shopping-cart"></i>
+                            <span class="cart-count">-</span>
+                        </div>
+                        <p>Cart</p>
+                    </a>
+                    @elseif(auth()->user()->role == "supplier")
                     @else
                     <a href="{{ route('user.view.cart') }}" class="dropdown-toggle">
                         <div class="icon">
