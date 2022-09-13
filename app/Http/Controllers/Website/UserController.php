@@ -19,7 +19,7 @@ class UserController extends Controller
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
 
-        return view('website.pages.login',compact('categories','products'));
+        return view('website.pages.login', compact('categories', 'products'));
     }
     public function doLogin(Request $request)
     {
@@ -44,7 +44,7 @@ class UserController extends Controller
             return redirect()->route('website.home')->with('message', 'Login Successful');
         }
     }
-    
+
     public function doRegistration(Request $request)
     {
         $request->validate([
@@ -78,12 +78,17 @@ class UserController extends Controller
     //////////////////// profile //////////////////// 
     public function profile($id)
     {
-        $categories = Category::with('subCategories')->get();
-        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         $user = User::find($id);
-        $orders = Order::where('customer_id', '=', $id)->get();
-        $total_product = Order::where('customer_id', $id)->count();
-        return view('website.pages.profile', compact('user', 'orders', 'total_product','categories','products'));
+        if ($user) {
+            $categories = Category::with('subCategories')->get();
+            $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+            $orders = Order::where('customer_id', '=', $id)->get();
+            $total_product = Order::where('customer_id', $id)->count();
+            return view('website.pages.profile', compact('user', 'orders', 'total_product', 'categories', 'products'));
+        }else{
+            return redirect()->route('website.home')->with('message', 'Profile Not Found');
+        }
+
     }
 
     public function edit($id)

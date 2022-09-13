@@ -33,7 +33,7 @@ class SupplierController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'address' => $request->address,
             'role' => $request->role,
         ]);

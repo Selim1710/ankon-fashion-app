@@ -116,21 +116,22 @@ class HomeController extends Controller
 
     public function productDetails($id)
     {
-        $categories = Category::with('subCategories')->get();
-        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         $product = Product::find($id);
-        $productImages = ProductImage::where('product_id', $id)->get();
-        $subCatProduct = Product::with('productImage')->where('subCategory_id', $product->subCategory_id)->get();
-        $reviews = Review::where('product_id', $id)->get();
-        // dd($reviews);
-        return view('website.layouts.product_details', compact('categories', 'productImages', 'products', 'product', 'subCatProduct', 'reviews'));
+        if ($product){
+            $categories = Category::with('subCategories')->get();
+            $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+            $productImages = ProductImage::where('product_id', $id)->get();
+            $subCatProduct = Product::with('productImage')->where('subCategory_id', $product->subCategory_id)->get();
+            $reviews = Review::where('product_id', $id)->get();
+            return view('website.layouts.product_details', compact('categories', 'productImages', 'products', 'product', 'subCatProduct', 'reviews'));
+        }
+        return redirect()->back()->with('message', 'Product Not Found');
     }
 
     ////////////////////////// Review //////////////////////////
     public function review($id)
     {
         $review = Order::find($id);
-        // dd($id);
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         return view('website.layouts.review', compact('review', 'categories', 'products'));
