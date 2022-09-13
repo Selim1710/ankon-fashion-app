@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,6 +31,8 @@
     <link rel="stylesheet" href="{{ asset('/website/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/website/assets/css/skins/skin-demo-4.css') }}">
     <link rel="stylesheet" href="{{ asset('/website/assets/css/demos/demo-4.css') }}">
+    <!-- font awosome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 
 <body>
@@ -84,7 +87,7 @@
                                     <li><a href="#">Shop List</a></li>
                                 </ul>
                             </li>
-                            
+
                         </ul>
                     </nav>
                 </div>
@@ -93,7 +96,6 @@
                         <ul class="mobile-cats-menu">
                             <li><a class="mobile-cats-lead" href="#">Daily offers</a></li>
                             <li><a class="mobile-cats-lead" href="#">Gift Ideas</a></li>
-                            
                         </ul>
                     </nav>
                 </div>
@@ -155,4 +157,5 @@
     <script src="{{ asset('/website/assets/js/main.js') }}"></script>
     <script src="{{ asset('/website/assets/js/demos/demo-4.js') }}"></script>
 </body>
+
 </html>

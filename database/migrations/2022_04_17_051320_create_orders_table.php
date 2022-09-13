@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('customer_id');
             $table->string('name')->nullable();
             $table->string('email');
+            $table->string('address');
             $table->string('phone')->nullable();
 
             $table->string('product_id');

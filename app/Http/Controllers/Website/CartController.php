@@ -17,8 +17,8 @@ class CartController extends Controller
             $productId = $product->id;
             $productName = $product->name;
             // product image 
-            if($product->productImage){
-                foreach($product->productImage as $image){
+            if ($product->productImage) {
+                foreach ($product->productImage as $image) {
                     $productImage = $image->images;
                 }
             }
@@ -101,6 +101,7 @@ class CartController extends Controller
                     'name' => auth()->user()->name,
                     'email' => auth()->user()->email,
                     'phone' => auth()->user()->phone,
+                    'address' => auth()->user()->address,
 
                     'product_id' => $cart['id'],
                     'product_name' => $cart['name'],
@@ -118,10 +119,11 @@ class CartController extends Controller
 
     public function orderList($id)
     {
+        $supplierOrderList = Order::where('order_status','accepted')->get();
         $orders = Order::where('customer_id', '=', $id)->get();
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
-        // dd($orders);
-        return view('website.layouts.order_list', compact('orders', 'categories', 'products'));
+        // dd($supplierOrderList);
+        return view('website.layouts.order_list', compact('supplierOrderList','orders', 'categories', 'products'));
     }
 }
