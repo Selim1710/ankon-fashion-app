@@ -8,12 +8,11 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
- 
+
     public function manageSupplier()
     {
-        $suppliers = User::all();
-        return view('admin.layouts.supplier.supplier_table',compact('suppliers'));
-
+        $suppliers = User::where('role', 'supplier')->get();
+        return view('admin.layouts.supplier.supplier_table', compact('suppliers'));
     }
 
     public function add()
@@ -22,7 +21,6 @@ class SupplierController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users|max:20',
@@ -48,25 +46,22 @@ class SupplierController extends Controller
         return view('admin.layouts.supplier.edit_supplier', compact('supplier'));
     }
 
-    public function delete($id)
-    {
-        //
-    }
-
-    
-    public function show($id)
-    {
-        //
-    }
-
-
     public function update(Request $request, $id)
     {
-        //
+        $supplier = User::find($id);
+        $supplier->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
+        return redirect()->route('admin.manage.supplier')->with('message', 'Supplier updated successfully');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $supplier = User::find($id);
+        $supplier->delete();
+        return redirect()->route('admin.manage.supplier')->with('error', 'Supplier deleted successfully');
     }
 }

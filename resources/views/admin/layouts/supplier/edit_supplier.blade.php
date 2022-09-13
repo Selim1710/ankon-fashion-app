@@ -1,6 +1,5 @@
 @extends('admin.master')
 @section('contents')
-<!-- Va value="{{ $supplier-> }}"lidation Error Message -->
 <div class="message">
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -14,7 +13,7 @@
 </div>
 
 <div class="myform text-capitalize">
-    <form action="{{ route('admin.store.supplier') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.update.supplier',$supplier->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="c_n1"> Name</label>
@@ -30,8 +29,9 @@
         </div>                
         <div class="form-group">
             <label for="c_n5"> address</label>
-            <input type="text" name="email" class="form-control" value="{{ $supplier->email }}" id="c_n5" required>
-        </div>               
+            <input type="text" name="address" class="form-control" value="{{ $supplier->address }}" id="c_n5" required>
+        </div>    
+                   
         <button type="submit" class="btn btn-primary w-100">Submit Now</button>
     </form>
 </div>
