@@ -117,7 +117,7 @@ class HomeController extends Controller
     public function productDetails($id)
     {
         $product = Product::find($id);
-        if ($product){
+        if ($product) {
             $categories = Category::with('subCategories')->get();
             $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
             $productImages = ProductImage::where('product_id', $id)->get();
@@ -154,6 +154,20 @@ class HomeController extends Controller
         $order = Order::find($id);
         $order->delete();
         return redirect()->back()->with('error', 'order cancelled');
+    }
+
+    ////////////////////////// supplier Delivered //////////////////////////
+
+    public function supplierDelivered($id)
+    {
+        $supplierDelivered = Order::find($id);
+        // dd($supplierDelivered);
+        $supplierDelivered->update([
+            'order_status'=>'delivered',
+        ]);
+        return redirect()->back()->with('message', 'order delivered');
+
+        
     }
 
     public function refundPolicy()

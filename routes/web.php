@@ -66,6 +66,9 @@ Route::group(['prefix' => 'website'], function () {
     // cancel order
     Route::get('/user/cancel/order/{id}', [HomeController::class, 'cancelOrder'])->name('user.cancel.order');
 
+    // supplier delivered product
+    Route::get('/supplier/delivered/product/{id}', [HomeController::class, 'supplierDelivered'])->name('supplier.delivered.product');
+
     Route::group(['middleware' => 'check_customer'], function () {
         // add to cart
         Route::post('/add/to/cart/{id}', [CartController::class, 'cart'])->name('add.to.cart');

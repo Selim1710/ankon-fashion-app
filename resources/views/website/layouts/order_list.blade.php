@@ -59,7 +59,7 @@
                             <td class="price-col">{{ $order['price'] }}</td>
                             <td class="price-col">{{ $order['quantity'] }}</td>
                             <td class="price-col"><span class="in-stock">{{ $order['total'] }} ৳</span></td>
-                            <td class="remove-col"><a href="#" class="btn btn-success"><i class="fas fa-check"></i></a></td>
+                            <td class="remove-col"><a href="{{ route('supplier.delivered.product',$order['id']) }}" class="btn btn-success"><i class="fas fa-check"></i></a></td>
                         </tr>
                         @endforeach
                     </tbody>
