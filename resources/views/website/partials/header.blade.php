@@ -47,7 +47,6 @@
             </div>
         </div>
     </div>
-    <!-- middle part -->
     <div class="header-middle">
         <div class="container">
             <div class="header-left">
@@ -55,6 +54,7 @@
                     <span class="sr-only">Toggle mobile menu</span>
                     <i class="icon-bars"></i>
                 </button>
+                <!-- logo -->
                 <a href="{{ route('website.home') }}" class="logo">
                     <img src="/website/images/logo.png" alt="AN Logo" width="105" height="25">
                 </a>
@@ -128,7 +128,7 @@
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Browse Categories">
                         Browse Categories <i class="icon-angle-down"></i>
                     </a>
-
+                    <!-- categoies -->
                     <div class="dropdown-menu">
                         <nav class="side-nav">
                             <ul class="menu-vertical sf-arrows">
@@ -146,7 +146,7 @@
                     <ul class="menu sf-arrows">
                         <li class="megamenu-container active">
                             <!-- home -->
-                            <a href="#" class="sf-with-ul">Home</a>
+                            <a href="{{ route('website.home') }}" class="sf-with-ul">Home</a>
                             <div class="megamenu demo">
                                 <div class="menu-col">
                                     <div class="menu-title">Choose your product</div>
