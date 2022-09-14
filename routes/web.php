@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\OfferController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Website\CartController;
+use App\Http\Controllers\Website\FooterContentController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\UserController;
 use Illuminate\Support\Facades\Route;
@@ -80,8 +81,10 @@ Route::group(['prefix' => 'website'], function () {
     });
 
     // footer
-    Route::get('/user/refund/policy', [HomeController::class, 'refundPolicy'])->name('user.refund.policy');
-    Route::get('/user/terms/and/conditions', [HomeController::class, 'termsConditions'])->name('user.terms.&.conditions');
+    Route::get('/about-us', [FooterContentController::class, 'aboutUs'])->name('website.about.us');
+    Route::get('/contact-us', [FooterContentController::class, 'contactUs'])->name('website.contact.us');
+    Route::get('/user/refund/policy', [FooterContentController::class, 'refundPolicy'])->name('user.refund.policy');
+    Route::get('/user/terms/and/conditions', [FooterContentController::class, 'termsConditions'])->name('user.terms.&.conditions');
 });
 
 

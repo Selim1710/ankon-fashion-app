@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Controllers\Website;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Product;
+
+class FooterContentController extends Controller
+{
+
+    public function aboutUs()
+    {
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        return view('website.layouts.footer_content.about_us', compact('categories', 'products'));
+    }
+    public function contactUs()
+    {
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        return view('website.layouts.footer_content.contact_us', compact('categories', 'products'));
+    }
+
+
+    public function refundPolicy()
+    {
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        return view('website.layouts.footer_content.refund_policy', compact('categories', 'products'));
+    }
+    public function termsConditions()
+    {
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        return view('website.layouts.footer_content.terms_condition', compact('categories', 'products'));
+    }
+}

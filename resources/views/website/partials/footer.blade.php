@@ -17,8 +17,8 @@
                     <div class="widget">
                         <h4 class="widget-title"> Useful Information </h4>
                         <ul class="widget-list">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Our Services</a></li>
+                            <li><a href="{{ route('website.about.us') }}">About Us</a></li>
+                            <li><a href="{{ route('website.contact.us') }}">Contact Us</a></li>
                             <li><a href="#">How to shop on Ankon</a></li>
                             <li><a href="#">FAQ</a></li>
                         </ul>

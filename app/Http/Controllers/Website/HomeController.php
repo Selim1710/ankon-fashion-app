@@ -169,13 +169,4 @@ class HomeController extends Controller
 
         
     }
-
-    public function refundPolicy()
-    {
-        return view('website.layouts.refund_policy');
-    }
-    public function termsConditions()
-    {
-        return view('website.layouts.terms_condition');
-    }
 }
