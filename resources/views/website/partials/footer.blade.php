@@ -2,7 +2,7 @@
     <div class="footer-middle">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-4">
                     <div class="widget widget-about">
                         <img src="/website/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
                         <p> “ নিজেকে রাঙ্গাতে, অঙ্কনের সাথে !!! ” </p>
@@ -13,39 +13,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-4">
                     <div class="widget">
                         <h4 class="widget-title"> Useful Information </h4>
                         <ul class="widget-list">
                             <li><a href="{{ route('website.about.us') }}">About Us</a></li>
                             <li><a href="{{ route('website.contact.us') }}">Contact Us</a></li>
                             <li><a href="{{ route('website.how.to.shop') }}">How to shop on Ankon</a></li>
-                            <li><a href="#">FAQ</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-4">
                     <div class="widget">
                         <h4 class="widget-title">Customer Care</h4>
                         <ul class="widget-list">
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Money-back guarantee!</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Terms and conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="widget">
-                        <h4 class="widget-title">My Account</h4>
-                        <ul class="widget-list">
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="#">My Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="{{ route('website.payment.method') }}">Payment Methods</a></li>
+                            <li><a href="{{ route('website.terms.and.conditions') }}">Terms and conditions</a></li>
+                            <li><a href="{{ route('website.privacy.policy') }}">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,8 +39,10 @@
     <div class="footer-bottom">
         <div class="container">
             <p class="footer-copyright">Copyright © 2019 Ankon Store. All Rights Reserved.</p>
-            <figure class="footer-payments">
-                <img src="/website/assets/images/payments.png" alt="Payment methods" width="272" height="20">
+            <figure class="footer-payments" style="display:flex;">
+                <img src="/website/images/nogod.jpg" class="ml-1" alt="Payment methods" style="height:25px; width:25px;">
+                <img src="/website/images/rocket.jpg" class="ml-1" alt="Payment methods" style="height:25px; width:25px;">
+                <img src="/website/images/bkash.jpg" class="ml-1" alt="Payment methods" style="height:25px; width:25px;">
             </figure>
         </div>
     </div>

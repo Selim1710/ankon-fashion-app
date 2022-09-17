@@ -87,8 +87,10 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/about-us', [FooterContentController::class, 'aboutUs'])->name('website.about.us');
     Route::get('/contact-us', [FooterContentController::class, 'contactUs'])->name('website.contact.us');
     Route::get('/how-to-shop', [FooterContentController::class, 'howToShop'])->name('website.how.to.shop');
-    Route::get('/user/refund/policy', [FooterContentController::class, 'refundPolicy'])->name('user.refund.policy');
-    Route::get('/user/terms/and/conditions', [FooterContentController::class, 'termsConditions'])->name('user.terms.&.conditions');
+
+    Route::get('/payment-method', [FooterContentController::class, 'paymentMethod'])->name('website.payment.method');
+    Route::get('/user/refund/policy', [FooterContentController::class, 'privacyPolicy'])->name('website.privacy.policy');
+    Route::get('/user/terms/and/conditions', [FooterContentController::class, 'termsConditions'])->name('website.terms.and.conditions');
 });
 
 
