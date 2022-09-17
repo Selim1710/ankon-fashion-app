@@ -93,12 +93,12 @@
                     <div class="product-price" style="text-decoration:line-through;">
                         {{ $product->old_price }}
                     </div>
-                    <div class="ratings-container">
+                    <!-- <div class="ratings-container">
                         <div class="ratings">
                             <div class="ratings-val" style="width: 100%;"></div>
                         </div>
                         <span class="ratings-text">( 4 Reviews )</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @endforeach
@@ -167,12 +167,12 @@
                                 <div class="product-price" style="text-decoration:line-through;">
                                     {{ $product->old_price }}
                                 </div>
-                                <div class="ratings-container">
+                                <!-- <div class="ratings-container">
                                     <div class="ratings">
                                         <div class="ratings-val" style="width: 100%;"></div>
                                     </div>
                                     <span class="ratings-text">( 4 Reviews )</span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         @endforeach
@@ -222,12 +222,12 @@
                             <div class="product-price" style="text-decoration:line-through;">
                                 {{ $product->old_price }}
                             </div>
-                            <div class="ratings-container">
+                            <!-- <div class="ratings-container">
                                 <div class="ratings">
                                     <div class="ratings-val" style="width: 100%;"></div>
                                 </div>
                                 <span class="ratings-text">( 4 Reviews )</span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

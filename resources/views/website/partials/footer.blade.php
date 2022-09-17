@@ -19,7 +19,7 @@
                         <ul class="widget-list">
                             <li><a href="{{ route('website.about.us') }}">About Us</a></li>
                             <li><a href="{{ route('website.contact.us') }}">Contact Us</a></li>
-                            <li><a href="#">How to shop on Ankon</a></li>
+                            <li><a href="{{ route('website.how.to.shop') }}">How to shop on Ankon</a></li>
                             <li><a href="#">FAQ</a></li>
                         </ul>
                     </div>

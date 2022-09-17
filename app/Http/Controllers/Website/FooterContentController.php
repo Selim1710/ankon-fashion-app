@@ -22,6 +22,12 @@ class FooterContentController extends Controller
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         return view('website.layouts.footer_content.contact_us', compact('categories', 'products'));
     }
+    public function howToShop()
+    {
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        return view('website.layouts.footer_content.how_to_shop', compact('categories', 'products'));
+    }
 
 
     public function refundPolicy()

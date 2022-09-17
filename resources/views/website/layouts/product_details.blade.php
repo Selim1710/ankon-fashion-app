@@ -303,12 +303,12 @@
                             <div class="product-price" style="text-decoration: line-through;">
                                 {{ $product->old_price }}
                             </div>
-                            <div class="ratings-container">
+                            <!-- <div class="ratings-container">
                                 <div class="ratings">
                                     <div class="ratings-val" style="width: 20%;"></div>
                                 </div>
                                 <span class="ratings-text">( 2 Reviews )</span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     @endforeach
