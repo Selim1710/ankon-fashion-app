@@ -8,48 +8,46 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Products</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Default</li>
+                    <li class="breadcrumb-item active" aria-current="page">Details</li>
                 </ol>
             </div>
         </nav>
-
         <div class="page-content">
             <div class="container">
                 <div class="product-details-top">
-                    <form action="{{ route('add.to.cart',$product->id) }}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="product-gallery product-gallery-vertical">
-                                    <div class="row">
-                                        <!-- product-main-image -->
-                                        @foreach($productImages as $image)
-                                        @if($loop->first)
-                                        <figure class="product-main-image">
-                                            <img id="product-zoom" src="{{ asset('/uploads/products/'.json_decode($image->images)) }}" data-zoom-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}" alt="product image">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="product-gallery product-gallery-vertical">
+                                <div class="row">
+                                    <!-- product-main-image -->
+                                    @foreach($productImages as $image)
+                                    @if($loop->first)
+                                    <figure class="product-main-image">
+                                        <img id="product-zoom" src="{{ asset('/uploads/products/'.json_decode($image->images)) }}" data-zoom-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}" alt="product image">
 
-                                            <a href="#" id="btn-product-gallery" class="btn-product-gallery">
-                                                <i class="icon-arrows"></i>
-                                            </a>
-                                        </figure>
-                                        @endif
+                                        <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                                            <i class="icon-arrows"></i>
+                                        </a>
+                                    </figure>
+                                    @endif
+                                    @endforeach
+                                    <!-- more image -->
+                                    <div id="product-zoom-gallery" class="product-image-gallery">
+                                        @foreach($productImages as $image)
+                                        <a class="product-gallery-item active" href="#" data-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}" data-zoom-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}">
+                                            <img src="{{ asset('/uploads/products/'.json_decode($image->images)) }}" alt="product side">
+                                        </a>
                                         @endforeach
-                                        <!-- more image -->
-                                        <div id="product-zoom-gallery" class="product-image-gallery">
-                                            @foreach($productImages as $image)
-                                            <a class="product-gallery-item active" href="#" data-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}" data-zoom-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}">
-                                                <img src="{{ asset('/uploads/products/'.json_decode($image->images)) }}" alt="product side">
-                                            </a>
-                                            @endforeach
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="product-details">
-                                    <h1 class="product-title"> {{ $product->name }} </h1>
-
+                        </div>
+                        <div class="col-md-6">
+                            <div class="product-details">
+                                <h1 class="product-title"> {{ $product->name }} </h1>
+                                <!-- add to cart -->
+                                <form action="{{ route('add.to.cart',$product->id) }}" method="POST">
+                                    @csrf
                                     <div class="ratings-container">
                                         <div class="ratings">
                                             <div class="ratings-val" style="width: 80%;"></div>
@@ -110,34 +108,72 @@
 
                                     <div class="product-details-action">
                                         <button type="submit" class="btn-product btn-cart">
-                                            <span>add to cart</span>
+                                            <span style="color:black">add to cart</span>
                                         </button>
 
                                         <div class="details-action-wrapper">
-                                            <a href="#" class="btn btn-success rounded" >Buy Now</a>
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Buy Now</button>
                                         </div>
                                     </div>
-
-                                    <div class="product-details-footer">
-                                        <div class="product-cat">
-                                            <span>Category:</span>
-                                            <a href="#">Women</a>,
-                                            <a href="#">Dresses</a>,
-                                            <a href="#">Yellow</a>
+                                </form>
+                                <!-- modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Please Select Size & quantity</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ route('user.buy.product',$product->id) }}" method="POST">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <!-- buy now form -->
+                                                    <div class="form-group m-3">
+                                                        <label for="size" class="col-form-label text-danger">Size :</label>
+                                                        <select name="size" id="size" class="form-control">
+                                                            <option value="#" selected="selected">Select a size</option>
+                                                            @foreach(json_decode($product->size) as $size)
+                                                            <option value="{{ $size }}">{{ $size }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group m-3">
+                                                        <label for="qty">Qty:</label>
+                                                        <div class="product-details-quantity">
+                                                            <input type="number" name="quantity" value="1" id="qty" class="form-control" min="1" max="10" step="1" data-decimals="0" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success">Place Order</button>
+                                                </div>
+                                            </form>
                                         </div>
+                                    </div>
+                                </div>
+                                <!-- end modal -->
+                                <div class="product-details-footer">
+                                    <div class="product-cat">
+                                        <span>Category:</span>
+                                        <a href="#">Women</a>,
+                                        <a href="#">Dresses</a>,
+                                        <a href="#">Yellow</a>
+                                    </div>
 
-                                        <div class="social-icons social-icons-sm">
-                                            <span class="social-label">Share:</span>
-                                            <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                            <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                            <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                                            <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
-                                        </div>
+                                    <div class="social-icons social-icons-sm">
+                                        <span class="social-label">Share:</span>
+                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="product-details-tab">
                     <ul class="nav nav-pills justify-content-center" role="tablist">

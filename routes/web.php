@@ -78,6 +78,9 @@ Route::group(['prefix' => 'website'], function () {
         Route::get('/user/remove/cart/{id}', [CartController::class, 'remove'])->name('user.remove.cart');
         Route::get('/user/checkout', [CartController::class, 'checkout'])->name('user.checkout');
         Route::get('/user/view/order/list/{id}', [CartController::class, 'orderList'])->name('user.view.order.list');
+        
+        // buy now
+        Route::post('/user/buy/product/{id}', [CartController::class, 'buyProduct'])->name('user.buy.product');
     });
 
     // footer

@@ -112,18 +112,39 @@ class CartController extends Controller
                     'total' => ($cart['new_price'] * $cart['quantity']),
                 ]);
             session()->forget('cart');
-            return redirect()->back()->with('message', 'Order place successfully. Now Click -- PROCESS TO PAY -- to confirm order');
+            return redirect()->back()->with('message', 'Order place successfully');
         }
         return redirect()->back()->with('error', 'No data found into the cart');
     }
 
     public function orderList($id)
     {
-        $supplierOrderList = Order::where('order_status','accepted')->get();
+        $supplierOrderList = Order::where('order_status', 'accepted')->get();
         $orders = Order::where('customer_id', '=', $id)->get();
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         // dd($supplierOrderList);
-        return view('website.layouts.order_list', compact('supplierOrderList','orders', 'categories', 'products'));
+        return view('website.layouts.order_list', compact('supplierOrderList', 'orders', 'categories', 'products'));
+    }
+    public function buyProduct(Request $request, $id)
+    {
+        $product = Product::find($id);
+        // dd($request->all());
+        Order::create([
+            'customer_id' => auth()->user()->id,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
+            'phone' => auth()->user()->phone,
+            'address' => auth()->user()->address,
+
+            'product_id' => $product['id'],
+            'product_name' => $product['name'],
+            'image' => json_encode($product['image']),
+            'size' => $request['size'],
+            'price' => $product['new_price'],
+            'quantity' => $request['quantity'],
+            'total' => ($product['new_price'] * $request['quantity']),
+        ]);
+        return redirect()->back()->with('message', 'Order place successfully');
     }
 }
