@@ -10,10 +10,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use PDF;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
 
+    ////////////////////////// login ////////////////////////// 
     public function loginForm()
     {
         $categories = Category::with('subCategories')->get();
@@ -44,6 +46,7 @@ class UserController extends Controller
             return redirect()->route('website.home')->with('message', 'Login Successful');
         }
     }
+    ////////////////////////// registration ////////////////////////// 
 
     public function doRegistration(Request $request)
     {
@@ -85,10 +88,9 @@ class UserController extends Controller
             $orders = Order::where('customer_id', '=', $id)->get();
             $total_product = Order::where('customer_id', $id)->count();
             return view('website.pages.profile', compact('user', 'orders', 'total_product', 'categories', 'products'));
-        }else{
+        } else {
             return redirect()->route('website.home')->with('message', 'Profile Not Found');
         }
-
     }
 
     public function edit($id)
@@ -106,5 +108,34 @@ class UserController extends Controller
             "phone" => $request->phone,
         ]);
         return redirect()->route('user.profile', $user->id)->with('message', 'Profile Updated');
+    }
+
+    ////////////////////////// reset password ////////////////////////// 
+    public function resetPasswordForm($id)
+    {
+        $user = User::find($id);
+        return view('website.pages.reset_password.form', compact('user'));
+    }
+    public function resetPassword(Request $request, $id)
+    {
+        // dd($request->all());
+        $request->validate([
+            "old_password" => 'required',
+            "password" => 'required|confirmed',
+        ]);
+        // dd('request validated');
+        $user = User::find($id);
+        // dd($user);
+
+        if (Hash::check($request->old_password, $user->password)) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+            return redirect()->route('user.login.form')->with('message', 'Password Changed. Now login');
+
+
+        } else {
+            return redirect()->route('reset.password.form')->with('message', 'your password is not matched');
+        }
     }
 }

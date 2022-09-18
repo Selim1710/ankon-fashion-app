@@ -20,7 +20,7 @@
                 </h1>
             </div>
         </div>
-
+        <!-- supplier -->
         @if(auth()->user()->role == 'supplier')
         <div class="page-content">
             <div class="container">
@@ -28,7 +28,7 @@
                     <div class="col-3 border text-center mt-4">
                         <a href="{{ route('user.view.order.list',$user->id) }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
-                            <i class="la la-list"></i>
+                                <i class="la la-list"></i>
                             </div>
                             <div class="card-body mt-1">
                                 <h5>View Order List</h5>
@@ -38,7 +38,7 @@
                     <div class="col-3 border text-center mt-4">
                         <a href="{{ route('user.logout') }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
-                            <i class="la la-sign-out"></i>
+                                <i class="la la-sign-out"></i>
                             </div>
                             <div class="card-body mt-1">
                                 <h5>Logout</h5>
@@ -48,9 +48,8 @@
                 </div>
             </div>
         </div>
-
         @else
-
+        <!-- customer -->
         <div class="page-content">
             <div class="container">
                 <div class="row">
@@ -67,7 +66,7 @@
                     <div class="col-3 border text-center mt-4">
                         <a href="{{ route('user.view.cart') }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
-                            <i class="la la-shopping-cart"></i>
+                                <i class="la la-shopping-cart"></i>
                             </div>
                             <div class="card-body mt-1">
                                 <h5>View Cart</h5>
@@ -77,7 +76,7 @@
                     <div class="col-3 border text-center mt-4">
                         <a href="{{ route('user.view.order.list',$user->id) }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
-                            <i class="la la-list"></i>
+                                <i class="la la-list"></i>
                             </div>
                             <div class="card-body mt-1">
                                 <h5>View Order List</h5>
@@ -85,9 +84,9 @@
                         </a>
                     </div>
                     <div class="col-3 border text-center mt-4">
-                        <a href="#">
+                        <a href="{{ route('reset.password.form',$user->id) }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
-                            <i class="la la-key"></i>
+                                <i class="la la-key"></i>
                             </div>
                             <div class="card-body mt-1">
                                 <h5>Change Password</h5>
@@ -97,7 +96,7 @@
                     <div class="col-3 border text-center mt-4">
                         <a href="{{ route('user.logout') }}">
                             <div class="card-header mt-1" style="font-size: 2.3rem;">
-                            <i class="la la-sign-out"></i>
+                                <i class="la la-sign-out"></i>
                             </div>
                             <div class="card-body mt-1">
                                 <h5>Logout</h5>

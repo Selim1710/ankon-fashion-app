@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
-                                        <input type="tel" name="phone" class="form-control" id="phone" required>
+                                        <input type="text" name="phone" class="form-control" id="phone" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="address">address</label>

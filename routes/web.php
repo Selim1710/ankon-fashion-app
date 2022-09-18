@@ -56,6 +56,10 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/user/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
     Route::get('/user/edit/profile/{id}', [UserController::class, 'edit'])->name('user.edit.profile');
     Route::post('/user/update/profile/{id}', [UserController::class, 'updateProfile'])->name('user.update.profile');
+    
+    // reset password
+    Route::get('/user/reset/password/form/{id}', [UserController::class, 'resetPasswordForm'])->name('reset.password.form');
+    Route::post('/user/reset/password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
 
     // product details
     Route::get('/product/details/{id}', [HomeController::class, 'productDetails'])->name('website.product.details');
@@ -67,7 +71,7 @@ Route::group(['prefix' => 'website'], function () {
     // cancel order
     Route::get('/user/cancel/order/{id}', [HomeController::class, 'cancelOrder'])->name('user.cancel.order');
 
-    // supplier delivered product
+    // supplier delivered status
     Route::get('/supplier/delivered/product/{id}', [HomeController::class, 'supplierDelivered'])->name('supplier.delivered.product');
 
     Route::group(['middleware' => 'check_customer'], function () {
