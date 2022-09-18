@@ -2,36 +2,13 @@
     <div class="header-top">
         <div class="container">
             <div class="header-left">
-                <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
+                <a href="tel:#"><i class="icon-phone"></i>Call: +01615-830993</a>
             </div>
             <div class="header-right">
                 <ul class="top-menu">
                     <li>
-                        <a href="#">Links</a>
+                        <a href="#">View Profile</a>
                         <ul>
-                            <li>
-                                <div class="header-dropdown">
-                                    <a href="#">USD</a>
-                                    <div class="header-menu">
-                                        <ul>
-                                            <li><a href="#">Eur</a></li>
-                                            <li><a href="#">Usd</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="header-dropdown">
-                                    <a href="#">English</a>
-                                    <div class="header-menu">
-                                        <ul>
-                                            <li><a href="#">English</a></li>
-                                            <li><a href="#">French</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
                             @if(auth()->user())
                             <li>
                                 <a href="{{ route('user.profile',auth()->user()->id) }}">

@@ -107,8 +107,8 @@
                                     </div>
 
                                     <div class="product-details-action">
-                                        <button type="submit" class="btn-product btn-cart">
-                                            <span style="color:black">add to cart</span>
+                                        <button type="submit" class="btn-product btn-cart bg-primary">
+                                            <span class="text-white">add to cart</span>
                                         </button>
 
                                         <div class="details-action-wrapper">

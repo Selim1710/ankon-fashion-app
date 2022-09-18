@@ -71,9 +71,6 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            {{ $products->links() }}
-                        </div>
                     </div>
                     <!-- filtering items -->
                     <aside class="col-lg-3 order-lg-first">

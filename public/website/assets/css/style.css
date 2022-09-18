@@ -42,11 +42,11 @@ body {
 .card .card-img img{
     height:100%;
     width: 100%;
-    border-radius: 10px;
 }
 .card .card-desc{
     font-size:1.3rem; 
     text-align:center;
+    margin:20px 0 ;
 }
 
 
@@ -780,7 +780,8 @@ blockquote.text-white cite span {
 
 .top-menu ul {
     display: flex;
-    align-items: center
+    align-items: center;
+    margin:10px 0;
 }
 
 .top-menu li+li {

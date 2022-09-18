@@ -62,7 +62,14 @@ class HomeController extends Controller
     }
 
     ////////////////////////// price shorting ////////////////////////// 
-    public function allProduct(Request $request)
+    public function allProduct()
+    {
+        $categories = Category::with('subCategories')->get();
+        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        $subCategories = Subcategory::with('product')->pluck('sub_category_name');
+        return view('website.layouts.all_product', compact('products', 'categories', 'subCategories'));
+    }
+    public function allProductFilter(Request $request)
     {
         $array = $request->all();
         $filter = $array ?? "";
@@ -72,10 +79,10 @@ class HomeController extends Controller
             $subCategories = Subcategory::pluck('sub_category_name');
         } else {
             $categories = Category::with('subCategories')->get();
-            $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(16);
+            $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
             $subCategories = Subcategory::with('product')->pluck('sub_category_name');
         }
-        return view('website.layouts.all_product', compact('products', 'categories', 'subCategories'));
+        return view('website.layouts.all_product_filter', compact('products', 'categories', 'subCategories'));
     }
 
     public function lowPrice()
@@ -102,6 +109,7 @@ class HomeController extends Controller
         $products = Product::where('new_price', '>', '2001')->orderBy('id', 'DESC')->paginate(16);
         return view('website.layouts.all_product', compact('products', 'categories', 'subCategories'));
     }
+    ////////////////////////// offer ////////////////////////// 
 
     public function offers()
     {
@@ -163,10 +171,8 @@ class HomeController extends Controller
         $supplierDelivered = Order::find($id);
         // dd($supplierDelivered);
         $supplierDelivered->update([
-            'order_status'=>'delivered',
+            'order_status' => 'delivered',
         ]);
         return redirect()->back()->with('message', 'order delivered');
-
-        
     }
 }

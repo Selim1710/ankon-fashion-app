@@ -194,7 +194,7 @@
                 <a href="#" class="title-link">View All Recommendadion <i class="icon-long-arrow-right"></i></a>
             </div>
         </div>
-
+        @if(!empty($products))
         <div class="products">
             <div class="row justify-content-center">
                 @foreach($products as $product)
@@ -235,9 +235,12 @@
             </div>
         </div>
     </div>
-
+    @else
+    <div>
+        <h4 class="text-center text-danger">No product found</h4>
+    </div>
+    @endif
     <div class="mb-4"></div>
-
     <div class="container">
         <hr class="mb-0">
     </div>

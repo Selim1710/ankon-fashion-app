@@ -30,6 +30,7 @@ Route::group(['prefix' => 'website'], function () {
 
     // all product
     Route::get('/view/all/product', [HomeController::class, 'allProduct'])->name('website.all.product');
+    Route::post('/all/product/filter', [HomeController::class, 'allProductFilter'])->name('website.all.product.filter');
     Route::get('/view/shorting/low/price', [HomeController::class, 'lowPrice'])->name('website.shorting.low.price');
     Route::get('/view/shorting/mid/price', [HomeController::class, 'midPrice'])->name('website.shorting.mid.price');
     Route::get('/view/shorting/high/price', [HomeController::class, 'highPrice'])->name('website.shorting.high.price');
@@ -43,10 +44,6 @@ Route::group(['prefix' => 'website'], function () {
     // offers
     Route::get('/offers', [HomeController::class, 'offers'])->name('website.offers');
     Route::get('/offer/details/{id}', [HomeController::class, 'offerDetails'])->name('website.offer.details');
-
-    // laptop deals
-    Route::get('/laptop/deals', [HomeController::class, 'laptopDeals'])->name('website.laptop.deals');
-    Route::get('/laptop/deals/details/{id}', [HomeController::class, 'laptopDealsDetails'])->name('website.deals.details');
 
     Route::group(['prefix' => 'user'], function () {
         // login
@@ -65,32 +62,32 @@ Route::group(['prefix' => 'website'], function () {
         // reset password
         Route::get('/reset/password/form/{id}', [UserController::class, 'resetPasswordForm'])->name('reset.password.form');
         Route::post('/reset/password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
+
+        // review
+        Route::get('/add/review/{id}', [HomeController::class, 'review'])->name('user.add.review');
+        Route::post('/submit/review/{id}', [HomeController::class, 'submitReview'])->name('user.sumbit.review');
+
+        // cancel order
+        Route::get('/cancel/order/{id}', [HomeController::class, 'cancelOrder'])->name('user.cancel.order');
+        
+        Route::group(['middleware' => 'check_customer'], function () {
+            // add to cart
+            Route::post('/add/to/cart/{id}', [CartController::class, 'cart'])->name('add.to.cart');
+            Route::get('/view/cart', [CartController::class, 'viewCart'])->name('user.view.cart');
+            Route::get('/clear/cart', [CartController::class, 'clearCart'])->name('clear.cart');
+            Route::get('/remove/cart/{id}', [CartController::class, 'remove'])->name('user.remove.cart');
+            Route::get('/checkout', [CartController::class, 'checkout'])->name('user.checkout');
+            Route::get('/view/order/list/{id}', [CartController::class, 'orderList'])->name('user.view.order.list');
+
+            // buy now
+            Route::post('/buy/product/{id}', [CartController::class, 'buyProduct'])->name('user.buy.product');
+        });
     });
     // product details
     Route::get('/product/details/{id}', [HomeController::class, 'productDetails'])->name('website.product.details');
 
-    // review
-    Route::get('/add/review/{id}', [HomeController::class, 'review'])->name('user.add.review');
-    Route::post('/user/submit/review/{id}', [HomeController::class, 'submitReview'])->name('user.sumbit.review');
-
-    // cancel order
-    Route::get('/user/cancel/order/{id}', [HomeController::class, 'cancelOrder'])->name('user.cancel.order');
-
     // supplier delivered status
     Route::get('/supplier/delivered/product/{id}', [HomeController::class, 'supplierDelivered'])->name('supplier.delivered.product');
-
-    Route::group(['middleware' => 'check_customer'], function () {
-        // add to cart
-        Route::post('/add/to/cart/{id}', [CartController::class, 'cart'])->name('add.to.cart');
-        Route::get('/user/view/cart', [CartController::class, 'viewCart'])->name('user.view.cart');
-        Route::get('/clear/cart', [CartController::class, 'clearCart'])->name('clear.cart');
-        Route::get('/user/remove/cart/{id}', [CartController::class, 'remove'])->name('user.remove.cart');
-        Route::get('/user/checkout', [CartController::class, 'checkout'])->name('user.checkout');
-        Route::get('/user/view/order/list/{id}', [CartController::class, 'orderList'])->name('user.view.order.list');
-
-        // buy now
-        Route::post('/user/buy/product/{id}', [CartController::class, 'buyProduct'])->name('user.buy.product');
-    });
 
     // footer
     Route::get('/about-us', [FooterContentController::class, 'aboutUs'])->name('website.about.us');
@@ -101,7 +98,6 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/user/privacy/policy', [FooterContentController::class, 'privacyPolicy'])->name('website.privacy.policy');
     Route::get('/user/terms/and/conditions', [FooterContentController::class, 'termsConditions'])->name('website.terms.and.conditions');
 });
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -19,8 +19,7 @@
                 @if($carts)
                 <table class="table table-wishlist table-mobile">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('clear.cart') }}" class="btn btn-outline-danger">Clear</a>
-                        <a href="{{ route('user.checkout') }}" class="btn btn-outline-success">Checkout</a>
+                        <a href="{{ route('clear.cart') }}" class="btn btn-outline-danger">Clear All</a>
                     </div>
                     <thead>
                         <tr>
@@ -62,8 +61,11 @@
                     </tbody>
                 </table>
                 <hr>
-                <div class="w-100 d-flex align-items-center justify-content-center" style="font-size: 4.3rem;">
-                    <h5 class="p-4 border rounded">Total Price: &nbsp; {{ $total }} </h5>
+                <div class="d-flex flex-column justify-content-end">
+                    <h5 class="p-2 rounded ml-auto"> Grand-Total: &nbsp; {{ $total }} </h5>
+                    <a href="{{ route('user.checkout') }}" class="btn btn-outline-success w-25 ml-auto">
+                        Checkout &rarr;
+                    </a>
                 </div>
                 @else
                 <p class="text-danger text-center p-4 rounded border">No Product into the cart</p>
