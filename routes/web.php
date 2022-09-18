@@ -16,13 +16,17 @@ use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\UserController;
 use Illuminate\Support\Facades\Route;
 
-/////////////////////////// Website ///////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////                /////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////  website part  ////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////                //////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Route::get('/', [HomeController::class, 'home'])->name('website.home');
 
 Route::group(['prefix' => 'website'], function () {
-
     // search
-    Route::post('/user/search/product', [HomeController::class, 'search'])->name('website.search');
+    Route::post('/search/product', [HomeController::class, 'search'])->name('website.search');
 
     // all product
     Route::get('/view/all/product', [HomeController::class, 'allProduct'])->name('website.all.product');
@@ -44,23 +48,24 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/laptop/deals', [HomeController::class, 'laptopDeals'])->name('website.laptop.deals');
     Route::get('/laptop/deals/details/{id}', [HomeController::class, 'laptopDealsDetails'])->name('website.deals.details');
 
-    // login
-    Route::get('/login/form', [UserController::class, 'loginForm'])->name('user.login.form');
-    Route::post('/user/do/login', [UserController::class, 'doLogin'])->name('user.do.login');
-    Route::get('/check/banned', [UserController::class, 'checkBanned'])->name('website.check.banned');
+    Route::group(['prefix' => 'user'], function () {
+        // login
+        Route::get('/login/form', [UserController::class, 'loginForm'])->name('user.login.form');
+        Route::post('/user/do/login', [UserController::class, 'doLogin'])->name('user.do.login');
+        Route::get('/check/banned', [UserController::class, 'checkBanned'])->name('website.check.banned');
 
-    Route::post('/user/do/registration', [UserController::class, 'doRegistration'])->name('user.do.registration');
-    Route::get('/user/logout', [UserController::class, 'logout'])->name('user.logout');
+        Route::post('/do/registration', [UserController::class, 'doRegistration'])->name('user.do.registration');
+        Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
 
-    // user profile
-    Route::get('/user/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
-    Route::get('/user/edit/profile/{id}', [UserController::class, 'edit'])->name('user.edit.profile');
-    Route::post('/user/update/profile/{id}', [UserController::class, 'updateProfile'])->name('user.update.profile');
-    
-    // reset password
-    Route::get('/user/reset/password/form/{id}', [UserController::class, 'resetPasswordForm'])->name('reset.password.form');
-    Route::post('/user/reset/password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
+        // user profile
+        Route::get('/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
+        Route::get('/edit/profile/{id}', [UserController::class, 'edit'])->name('user.edit.profile');
+        Route::post('/update/profile/{id}', [UserController::class, 'updateProfile'])->name('user.update.profile');
 
+        // reset password
+        Route::get('/reset/password/form/{id}', [UserController::class, 'resetPasswordForm'])->name('reset.password.form');
+        Route::post('/reset/password/{id}', [UserController::class, 'resetPassword'])->name('user.reset.password');
+    });
     // product details
     Route::get('/product/details/{id}', [HomeController::class, 'productDetails'])->name('website.product.details');
 
@@ -82,7 +87,7 @@ Route::group(['prefix' => 'website'], function () {
         Route::get('/user/remove/cart/{id}', [CartController::class, 'remove'])->name('user.remove.cart');
         Route::get('/user/checkout', [CartController::class, 'checkout'])->name('user.checkout');
         Route::get('/user/view/order/list/{id}', [CartController::class, 'orderList'])->name('user.view.order.list');
-        
+
         // buy now
         Route::post('/user/buy/product/{id}', [CartController::class, 'buyProduct'])->name('user.buy.product');
     });
@@ -93,13 +98,18 @@ Route::group(['prefix' => 'website'], function () {
     Route::get('/how-to-shop', [FooterContentController::class, 'howToShop'])->name('website.how.to.shop');
 
     Route::get('/payment-method', [FooterContentController::class, 'paymentMethod'])->name('website.payment.method');
-    Route::get('/user/refund/policy', [FooterContentController::class, 'privacyPolicy'])->name('website.privacy.policy');
+    Route::get('/user/privacy/policy', [FooterContentController::class, 'privacyPolicy'])->name('website.privacy.policy');
     Route::get('/user/terms/and/conditions', [FooterContentController::class, 'termsConditions'])->name('website.terms.and.conditions');
 });
 
 
 
-/////////////////////////// Admin part ///////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////                /////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////  Admin part    ////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////                //////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Route::group(['prefix' => 'admin'], function () {
 
     // admin login
@@ -112,7 +122,6 @@ Route::group(['prefix' => 'admin'], function () {
         // dashboard
         Route::get('/dashboard', [DashBoardController::class, 'dashboard'])->name('admin.dashboard');
 
-        /////////////////////////// Product Part ///////////////////////////
         // Category
         Route::get('/manage/category', [CategoryController::class, 'manageCategory'])->name('admin.manage.category');
         Route::get('/add/category', [CategoryController::class, 'addCategory'])->name('admin.add.category');

@@ -105,10 +105,11 @@
 
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
-                                            <label class="custom-control-label" for="register-policy-2">I agree to the <a href="#">privacy policy</a> *</label>
+                                            <label class="custom-control-label" for="register-policy-2">I agree to the <a href="{{ route('website.privacy.policy') }}">privacy policy</a> *</label>
                                         </div>
                                     </div>
                                 </form>
+                                <!-- login with google, facebook -->
                                 <div class="form-choice">
                                     <p class="text-center">or sign in with</p>
                                     <div class="row">
@@ -133,10 +134,6 @@
             </div>
         </div>
     </main>
-
-
 </div>
-
 <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
-
 @endsection
