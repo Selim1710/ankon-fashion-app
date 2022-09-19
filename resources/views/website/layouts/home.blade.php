@@ -1,6 +1,7 @@
 @extends('website.master')
 @section('contents')
 <main class="main">
+    <!-- slider -->
     <div class="intro-slider-container mb-5">
         <div class="intro-slider owl-carousel owl-theme owl-nav-inside owl-light" data-toggle="owl" data-owl-options='{
                 "dots": true,

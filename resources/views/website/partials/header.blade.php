@@ -97,7 +97,6 @@
             </div>
         </div>
     </div>
-
     <div class="header-bottom sticky-header">
         <div class="container">
             <div class="header-left">
@@ -117,7 +116,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="header-center">
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
@@ -133,14 +131,13 @@
                                             @if ($product->productImage)
                                             @foreach ($product->productImage as $image)
                                             @if ($loop->first)
-                                            <a href="">
+                                            <a href="{{ route('website.product.details',$product->id) }}">
                                                 <img src="{{ asset('uploads/products/'.json_decode($image->images)) }}" style="height:200px;width:auto;">
                                                 <span class="demo-title">{{ $product->name }}</span>
                                             </a>
                                             @endif
                                             @endforeach
                                             @endif
-
                                         </div>
                                         @endforeach
                                     </div>
@@ -180,7 +177,6 @@
                     </ul>
                 </nav>
             </div>
-
             <div class="header-right">
                 <i class="la la-lightbulb-o"></i>
                 <p>Clearance<span class="highlight">&nbsp;Up to 30% Off</span></p>
