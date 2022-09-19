@@ -105,6 +105,7 @@
         </div>
     </div>
     <div class="mb-6"></div>
+    @if($trendingProducts)
     <div class="bg-light pt-5 pb-6">
         <div class="container trending-products">
             <div class="heading heading-flex mb-3">
@@ -113,6 +114,7 @@
                 </div>
             </div>
             <div class="row">
+                <!-- side image -->
                 <div class="col-xl-5col d-none d-xl-block">
                     <div class="banner">
                         @foreach ($offers as $offer)
@@ -145,7 +147,7 @@
                                         }
                                     }
                                 }'>
-                        @foreach($products as $product)
+                        @foreach($trendingProducts as $product)
                         <div class="product product-2">
                             <figure class="product-media">
 
@@ -181,7 +183,7 @@
             </div>
         </div>
     </div>
-
+    @endif
     <div class="mb-5"></div>
 
     <div class="container for-you">

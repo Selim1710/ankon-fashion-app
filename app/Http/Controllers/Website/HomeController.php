@@ -19,9 +19,20 @@ class HomeController extends Controller
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         $offers = Offer::all();
-        // dd($products);
-        return view('website.layouts.home', compact('categories', 'products', 'offers'));
+
+        // count review, goto review model, find product_id,then if review > 5 then trending product 
+        foreach ($products as $product) {
+            $reviews = Review::where('product_id','=', $product->id)->get();
+            if(count($reviews) > 5){
+                foreach($reviews as $review){
+                    $trendingProducts = Product::with('productImage')->where('id','=', $review->product_id)->orderBy('id', 'DESC')->paginate(8);
+                }
+            }
+        }
+
+        return view('website.layouts.home', compact('categories', 'products','trendingProducts', 'offers'));
     }
+
     public function search(Request $request)
     {
         $search = $request['search'] ?? "";
@@ -122,6 +133,7 @@ class HomeController extends Controller
         return view('website.layouts.offer_details', compact('offer'));
     }
 
+    ////////////////////////// product details ////////////////////////// 
     public function productDetails($id)
     {
         $product = Product::find($id);
@@ -169,7 +181,6 @@ class HomeController extends Controller
     public function supplierDelivered($id)
     {
         $supplierDelivered = Order::find($id);
-        // dd($supplierDelivered);
         $supplierDelivered->update([
             'order_status' => 'delivered',
         ]);

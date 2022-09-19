@@ -51,6 +51,7 @@ Route::group(['prefix' => 'website'], function () {
         Route::post('/user/do/login', [UserController::class, 'doLogin'])->name('user.do.login');
         Route::get('/check/banned', [UserController::class, 'checkBanned'])->name('website.check.banned');
 
+        // registration
         Route::post('/do/registration', [UserController::class, 'doRegistration'])->name('user.do.registration');
         Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
 

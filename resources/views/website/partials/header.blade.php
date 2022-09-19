@@ -188,11 +188,9 @@
         </div>
     </div>
 </header>
-<!-- Message -->
 @if(session()->has('error'))
 <p class="alert alert-danger text-center">{{ session()->get('error') }}</p>
 @endif
 @if(session()->has('message'))
 <p class="alert alert-success text-center">{{ session()->get('message') }}</p>
 @endif
-<!-- end -->

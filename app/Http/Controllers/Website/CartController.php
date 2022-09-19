@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class CartController extends Controller
 {
@@ -70,7 +72,6 @@ class CartController extends Controller
     public function viewCart()
     {
         $carts = session()->get('cart');
-        // dd($carts);
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
         return view('website.layouts.view_cart', compact('carts', 'categories', 'products'));
@@ -93,7 +94,6 @@ class CartController extends Controller
     public function checkout()
     {
         $carts = session()->get('cart');
-        // dd($carts);
         if ($carts) {
             foreach ($carts as $cart)
                 Order::create([
@@ -123,28 +123,30 @@ class CartController extends Controller
         $orders = Order::where('customer_id', '=', $id)->get();
         $categories = Category::with('subCategories')->get();
         $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
-        // dd($supplierOrderList);
         return view('website.layouts.order_list', compact('supplierOrderList', 'orders', 'categories', 'products'));
     }
     public function buyProduct(Request $request, $id)
     {
         $product = Product::find($id);
-        // dd($request->all());
-        Order::create([
-            'customer_id' => auth()->user()->id,
-            'name' => auth()->user()->name,
-            'email' => auth()->user()->email,
-            'phone' => auth()->user()->phone,
-            'address' => auth()->user()->address,
+        try {
+            Order::create([
+                'customer_id' => auth()->user()->id,
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email,
+                'phone' => auth()->user()->phone,
+                'address' => auth()->user()->address,
 
-            'product_id' => $product['id'],
-            'product_name' => $product['name'],
-            'image' => json_encode($product['image']),
-            'size' => $request['size'],
-            'price' => $product['new_price'],
-            'quantity' => $request['quantity'],
-            'total' => ($product['new_price'] * $request['quantity']),
-        ]);
-        return redirect()->back()->with('message', 'Order place successfully');
+                'product_id' => $product['id'],
+                'product_name' => $product['name'],
+                'image' => json_encode($product['image']),
+                'size' => $request['size'],
+                'price' => $product['new_price'],
+                'quantity' => $request['quantity'],
+                'total' => ($product['new_price'] * $request['quantity']),
+            ]);
+            return redirect()->back()->with('message', 'Order place successfully');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Please! check your address or phone number');
+        }
     }
 }
