@@ -17,7 +17,8 @@ class HomeController extends Controller
     public function home()
     {
         $categories = Category::with('subCategories')->get();
-        $products = Product::with('productImage')->orderBy('id', 'DESC')->paginate(8);
+        $newArrivels = Product::with('productImage')->orderBy('id', 'desc')->paginate(8);
+        $products = Product::with('productImage')->orderBy('id', 'asc')->paginate(8);
         $offers = Offer::all();
 
         // count review, goto review model, find product_id,then if review > 5 then trending product 
@@ -30,7 +31,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('website.layouts.home', compact('categories', 'products','trendingProducts', 'offers'));
+        return view('website.layouts.home', compact('categories', 'products','newArrivels','trendingProducts', 'offers'));
     }
 
     public function search(Request $request)

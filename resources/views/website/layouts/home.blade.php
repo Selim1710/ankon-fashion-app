@@ -70,7 +70,7 @@
                             }
                         }
                     }'>
-            @foreach ($products as $product)
+            @foreach ($newArrivels as $product)
             <div class="product product-2">
                 <figure class="product-media">
                     <!-- image -->
