@@ -60,7 +60,7 @@ class HomeController extends Controller
         $categories = Category::with('subCategories')->get();
         $subCategory = Subcategory::where('category_id', '=', $id)->get();
         foreach ($subCategory as $sub) {
-            $products = Product::where('subCategory_id', '=', $sub->id)->orderBy('id', 'DESC')->get();
+            $products = Product::where('subCategory_id', '=', $sub->id)->orderBy('id', 'DESC')->paginate(12);
         }
         return view('website.layouts.category_product', compact('products', 'categories'));
     }
@@ -69,7 +69,7 @@ class HomeController extends Controller
     {
         $categories = Category::with('subCategories')->get();
         $subCategory = Subcategory::find($id);
-        $products = Product::where('subCategory_id', '=', $id)->orderBy('id', 'DESC')->get();
+        $products = Product::where('subCategory_id', '=', $id)->orderBy('id', 'DESC')->paginate(12);
         return view('website.layouts.sub_category_product', compact('categories', 'products'));
     }
 

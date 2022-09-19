@@ -13,6 +13,7 @@
             </div>
         </nav>
         <!-- all product -->
+        @if($products)
         <div class="page-content">
             <div class="container">
                 <div class="row bg-white">
@@ -35,8 +36,14 @@
                     </div>
                     @endforeach
                 </div>
+                <div class="d-flex justify-content-end">
+                    {{ $products->links() }}
+                </div>
             </div>
         </div>
+        @else
+        <h4 class="text-center text-danger mt-4 mb-4">No Product Found</h4>
+        @endif
     </main>
 </div>
 @endsection
