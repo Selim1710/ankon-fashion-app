@@ -34,7 +34,7 @@
                                     <!-- more image -->
                                     <div id="product-zoom-gallery" class="product-image-gallery">
                                         @foreach($productImages as $image)
-                                        <a class="product-gallery-item active" href="#" data-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}" data-zoom-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}">
+                                        <a class="product-gallery-item active" href="#" onclick="changeProductImage(this)" data-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}" data-zoom-image="{{ asset('/uploads/products/'.json_decode($image->images)) }}">
                                             <img src="{{ asset('/uploads/products/'.json_decode($image->images)) }}" alt="product side">
                                         </a>
                                         @endforeach
@@ -319,3 +319,9 @@
 </div>
 <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 @endsection
+
+<script type="text/javascript">
+    function changeProductImage(event){
+        document.querySelector("#product-zoom").src = event.children[0].src;
+    }
+</script>
