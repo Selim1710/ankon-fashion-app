@@ -13,14 +13,15 @@ use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\Website\FooterContentController;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Website\SocialLoginController;
 use App\Http\Controllers\Website\UserController;
 use Illuminate\Support\Facades\Route;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////                /////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////  website part  ////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////                //////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+|--------------------------------------------------------------------------
+|                                 Website
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', [HomeController::class, 'home'])->name('website.home');
 
@@ -48,8 +49,16 @@ Route::group(['prefix' => 'website'], function () {
     Route::group(['prefix' => 'user'], function () {
         // login
         Route::get('/login/form', [UserController::class, 'loginForm'])->name('user.login.form');
-        Route::post('/user/do/login', [UserController::class, 'doLogin'])->name('user.do.login');
+        Route::post('/do/login', [UserController::class, 'doLogin'])->name('user.do.login');
         Route::get('/check/banned', [UserController::class, 'checkBanned'])->name('website.check.banned');
+
+        // login with facebook
+        Route::get('/login/facebook', [SocialLoginController::class, 'facebook'])->name('user.login.facebook');
+        Route::get('/login/facebook/callback', [SocialLoginController::class, 'facebookCallback'])->name('facebook.callback');
+
+        // login with google
+        Route::get('/login/google', [SocialLoginController::class, 'google'])->name('user.login.google');
+        Route::get('/login/google/callback', [SocialLoginController::class, 'googleCallback'])->name('google.callback');
 
         // registration
         Route::post('/do/registration', [UserController::class, 'doRegistration'])->name('user.do.registration');
@@ -70,7 +79,7 @@ Route::group(['prefix' => 'website'], function () {
 
         // cancel order
         Route::get('/cancel/order/{id}', [HomeController::class, 'cancelOrder'])->name('user.cancel.order');
-        
+
         Route::group(['middleware' => 'check_customer'], function () {
             // add to cart
             Route::post('/add/to/cart/{id}', [CartController::class, 'cart'])->name('add.to.cart');
@@ -101,11 +110,11 @@ Route::group(['prefix' => 'website'], function () {
 });
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////                /////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////  Admin part    ////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////                //////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+|--------------------------------------------------------------------------
+|                                 Admin part
+|--------------------------------------------------------------------------
+*/
 
 Route::group(['prefix' => 'admin'], function () {
 

@@ -1,5 +1,16 @@
 @extends('website.master')
 @section('contents')
+<div class="message">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+</div>
 <div class="page-wrapper">
     <main class="main">
         <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17" style="background-image: url('/website/images/login.jpg')">
@@ -47,17 +58,18 @@
                                         <a href="#" class="forgot-link">Forgot Your Password?</a>
                                     </div>
                                 </form>
+                                <!-- desktop login with facebook/google -->
                                 <div class="form-choice">
                                     <p class="text-center">or sign in with</p>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login btn-g">
+                                            <a href="{{ route('user.login.google') }}" class="btn btn-login btn-g">
                                                 <i class="icon-google"></i>
                                                 Login With Google
                                             </a>
                                         </div>
                                         <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login btn-f">
+                                            <a href="{{ route('user.login.facebook') }}" class="btn btn-login btn-f">
                                                 <i class="icon-facebook-f"></i>
                                                 Login With Facebook
                                             </a>
@@ -109,18 +121,18 @@
                                         </div>
                                     </div>
                                 </form>
-                                <!-- login with google, facebook -->
+                                <!-- mobile login with facebook/google -->
                                 <div class="form-choice">
                                     <p class="text-center">or sign in with</p>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login btn-g">
+                                            <a href="{{ route('user.login.google') }}" class="btn btn-login btn-g">
                                                 <i class="icon-google"></i>
                                                 Login With Google
                                             </a>
                                         </div>
                                         <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login  btn-f">
+                                            <a href="{{ route('user.login.facebook') }}" class="btn btn-login  btn-f">
                                                 <i class="icon-facebook-f"></i>
                                                 Login With Facebook
                                             </a>

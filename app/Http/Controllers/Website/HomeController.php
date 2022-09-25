@@ -23,15 +23,15 @@ class HomeController extends Controller
 
         // count review, goto review model, find product_id,then if review > 5 then trending product 
         foreach ($products as $product) {
-            $reviews = Review::where('product_id','=', $product->id)->get();
-            if(count($reviews) > 5){
-                foreach($reviews as $review){
-                    $trendingProducts = Product::with('productImage')->where('id','=', $review->product_id)->orderBy('id', 'DESC')->paginate(8);
+            $reviews = Review::where('product_id', '=', $product->id)->get();
+            if (count($reviews) > 5) {
+                foreach ($reviews as $review) {
+                    $trendingProducts = Product::with('productImage')->where('id', '=', $review->product_id)->orderBy('id', 'DESC')->paginate(8);
                 }
             }
         }
 
-        return view('website.layouts.home', compact('categories', 'products','newArrivels','trendingProducts', 'offers'));
+        return view('website.layouts.home', compact('categories', 'products', 'newArrivels', 'trendingProducts', 'offers'));
     }
 
     public function search(Request $request)
